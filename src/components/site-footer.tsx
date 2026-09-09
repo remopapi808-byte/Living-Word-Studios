@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 const SECTION_LINKS = [
-  { label: 'Bible Shorts', href: '#bible-shorts' },
+  { label: 'Bible Shorts', href: '/bible-shorts' },
   { label: 'Kids Kingdom', href: '#kids-kingdom' },
   { label: 'Illustrated Books', href: '#books' },
   { label: 'Studio Goods', href: '#studio-goods' },

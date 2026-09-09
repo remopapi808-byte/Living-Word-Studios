@@ -2,7 +2,7 @@ import Link from 'next/link';
 import BrandMark from '@/components/brand-mark';
 
 const NAV_LINKS = [
-  { label: 'Bible Shorts', href: '#bible-shorts' },
+  { label: 'Bible Shorts', href: '/bible-shorts' },
   { label: 'Kids Kingdom', href: '/kids-kingdom' },
   { label: 'Books', href: '#books' },
   { label: 'Studio Goods', href: '/studio-goods' },
@@ -64,7 +64,7 @@ export default function SiteHeader({ variant = 'dark' }: SiteHeaderProps) {
           ))}
         </nav>
         <Link
-          href="#bible-shorts"
+          href="/bible-shorts"
           className={`site-header-cta shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
             light
               ? 'bg-[#d9a441] text-[#3b2a12] hover:bg-[#ecc87e]'

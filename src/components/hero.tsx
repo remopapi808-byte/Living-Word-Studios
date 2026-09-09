@@ -22,7 +22,7 @@ export default function Hero() {
         </p>
         <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
           <Link
-            href="#bible-shorts"
+            href="/bible-shorts"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d9a441] px-7 py-3.5 text-base font-semibold text-[#0b0a08] transition-colors hover:bg-[#ecc87e]"
           >
             <span aria-hidden="true">&#9654;</span> Watch Bible Shorts

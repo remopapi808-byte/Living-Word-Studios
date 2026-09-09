@@ -70,6 +70,12 @@ body {
 .shop-toolbar {
   top: 4rem;
 }
+/* Bible Shorts page: the featured player scales to the viewport so the
+   controls always stay on screen (short laptops, tablet landscape, phones). */
+.bs-player-video {
+  max-height: 64vh;
+  min-height: 0;
+}
 
 /*
  * Mobile landscape (short viewports): keep the fixed header compact and
@@ -146,6 +152,33 @@ body {
      so the hero CTA buttons stay visible without scrolling. */
   .kk-hero-visual {
     display: none;
+  }
+  /* Bible Shorts page (short-viewport safety): compact hero padding and
+     type so the CTAs stay above the fold, and clamp the featured player
+     so it fits phone landscape alongside the visible controls. */
+  .bs-hero-inner {
+    padding-top: 2.75rem;
+    padding-bottom: 1.75rem;
+  }
+  .bs-hero-title {
+    font-size: 1.85rem;
+    line-height: 1.12;
+    margin-top: 0.6rem;
+  }
+  .bs-hero-copy {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-top: 0.6rem;
+  }
+  .bs-hero-ctas {
+    margin-top: 0.9rem;
+  }
+  .bs-section {
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+  }
+  .bs-player-video {
+    max-height: 40vh;
   }
 }
 
