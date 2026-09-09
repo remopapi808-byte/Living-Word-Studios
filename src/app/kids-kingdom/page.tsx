@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import CommunityClose from '@/components/community-close';
+import GoodsGrid from '@/components/goods-grid';
 import SiteFooter from '@/components/site-footer';
 import SiteHeader from '@/components/site-header';
 
@@ -230,6 +232,10 @@ export default function KidsKingdomPage() {
             </div>
           </div>
         </section>
+
+        {/* Studio Goods drop — adult + kids tees, hoodies, hats */}
+        <GoodsGrid />
+        <CommunityClose />
       </main>
       <SiteFooter />
     </>
