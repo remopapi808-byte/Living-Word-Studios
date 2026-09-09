@@ -191,6 +191,16 @@ body {
     padding-bottom: 0.6rem;
     font-size: 0.9rem;
   }
+  /* Studio Goods drop grid (short-viewport safety): compact the section
+     padding and tile height so cards + CTAs stay visible on phone
+     landscape (~390px tall). */
+  .gg-inner {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  .gg-tile {
+    height: 8rem;
+  }
 }
 
 /*
