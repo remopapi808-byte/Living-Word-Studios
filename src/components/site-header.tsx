@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import BrandMark from '@/components/brand-mark';
 
 const NAV_LINKS = [
   { label: 'Bible Shorts', href: '#bible-shorts' },
@@ -11,19 +12,14 @@ const NAV_LINKS = [
 export default function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#0b0a08]/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="#top" className="flex items-center gap-3">
-          <span
-            aria-hidden="true"
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#d9a441] to-[#b4552d] font-display text-lg font-bold text-[#0b0a08]"
-          >
-            LW
-          </span>
+      <div className="site-header-bar mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+        <Link href="#top" className="flex min-w-0 items-center gap-3">
+          <BrandMark />
           <span className="leading-tight">
-            <span className="font-display block text-[15px] font-bold tracking-wide text-[#f5efe3]">
+            <span className="brand-name font-display block text-[15px] font-bold tracking-wide text-[#f5efe3]">
               Living Word Studios
             </span>
-            <span className="block text-[11px] tracking-[0.18em] text-[#d9a441] uppercase">
+            <span className="brand-tagline block text-[11px] tracking-[0.18em] text-[#d9a441] uppercase">
               Rooted in Jesus
             </span>
           </span>
@@ -41,7 +37,7 @@ export default function SiteHeader() {
         </nav>
         <Link
           href="#bible-shorts"
-          className="rounded-full bg-[#d9a441] px-4 py-2 text-sm font-semibold text-[#0b0a08] transition-colors hover:bg-[#ecc87e]"
+          className="site-header-cta shrink-0 rounded-full bg-[#d9a441] px-4 py-2 text-sm font-semibold text-[#0b0a08] transition-colors hover:bg-[#ecc87e]"
         >
           Watch Bible Shorts
         </Link>
