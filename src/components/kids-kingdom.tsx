@@ -2,9 +2,14 @@ import Link from 'next/link';
 
 export default function KidsKingdom() {
   return (
-    <section id="kids-kingdom" className="scroll-mt-20 bg-[#faf3e6]">
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2">
-        <div>
+    <section id="kids-kingdom" className="relative scroll-mt-20 overflow-hidden bg-[#faf3e6]">
+      {/* Faint gold glow upper-left — mirrors the hero's right-side glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-24 -left-32 hidden h-[26rem] w-[26rem] rounded-full bg-[radial-gradient(circle,rgba(236,200,126,0.35),transparent_65%)] lg:block"
+      />
+      <div className="relative mx-auto max-w-6xl items-center gap-10 px-4 py-24 sm:px-6 sm:py-32 lg:grid lg:grid-cols-12">
+        <div className="lg:order-2 lg:col-span-6 lg:col-start-7">
           <p className="text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
             For families — coming soon
           </p>
@@ -36,11 +41,12 @@ export default function KidsKingdom() {
             Explore Kids Kingdom
           </Link>
         </div>
-        {/* Illustrative book-stack visual — pure CSS, light palette */}
-        <div aria-hidden="true" className="relative mx-auto w-full max-w-sm">
-          <div className="animate-slow-drift rounded-2xl border border-[#d9a441]/40 bg-gradient-to-br from-[#fdf6e3] to-[#fffdf7] p-8 shadow-[0_30px_70px_-30px_rgba(122,86,36,0.5)]">
-            <div className="rounded-xl bg-gradient-to-br from-[#d9a441] to-[#b4552d] p-[3px]">
-              <div className="rounded-[10px] bg-[#fffdf7] p-6 text-center">
+        {/* Illustrative book-stack visual — pure CSS, light palette. Sits left and
+            slightly high so it leans against the right-side text column. */}
+        <div aria-hidden="true" className="relative mx-auto mt-12 w-full max-w-sm lg:order-1 lg:col-span-4 lg:col-start-2 lg:-mt-10 lg:mx-0">
+          <div className="animate-slow-drift -rotate-2 rounded-[2rem] border border-[#d9a441]/40 bg-gradient-to-br from-[#fdf6e3] to-[#fffdf7] p-8 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)]">
+            <div className="rounded-2xl bg-gradient-to-br from-[#d9a441] to-[#b4552d] p-[3px]">
+              <div className="rounded-[14px] bg-[#fffdf7] p-6 text-center">
                 <p className="text-[11px] font-bold tracking-[0.3em] text-[#8a5a1d] uppercase">
                   Kids Kingdom
                 </p>
@@ -56,7 +62,7 @@ export default function KidsKingdom() {
               </div>
             </div>
           </div>
-          <div className="absolute -right-3 -bottom-4 -z-0 hidden rounded-xl border border-[#e8d5a6] bg-[#fffdf7] px-5 py-3 text-xs text-[#5b4632]/80 shadow-sm sm:block">
+          <div className="absolute -right-3 -bottom-4 -z-0 hidden rounded-2xl border border-[#e8d5a6] bg-[#fffdf7] px-5 py-3 text-xs text-[#5b4632]/80 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_14px_30px_-14px_rgba(176,122,30,0.35)] sm:block">
             For parents + kids
           </div>
         </div>

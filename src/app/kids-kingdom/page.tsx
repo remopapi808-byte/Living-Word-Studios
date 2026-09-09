@@ -53,8 +53,8 @@ export default function KidsKingdomPage() {
           className="kk-hero-glow relative scroll-mt-24 overflow-hidden border-b border-[#4a3728]/10"
         >
           <div className="kk-lines pointer-events-none absolute inset-0" aria-hidden="true" />
-          <div className="kk-hero-inner relative mx-auto grid max-w-6xl items-center gap-10 px-4 pt-28 pb-14 sm:px-6 sm:pt-36 sm:pb-20 lg:grid-cols-2">
-            <div>
+          <div className="kk-hero-inner relative mx-auto grid max-w-6xl items-center gap-10 px-4 pt-28 pb-20 sm:px-6 sm:pt-40 sm:pb-28 lg:grid-cols-12">
+            <div className="lg:col-span-6 lg:max-w-[34rem]">
               <p className="inline-flex items-center gap-2 rounded-full border border-[#d9a441]/50 bg-[#fffdf7]/80 px-4 py-1.5 text-xs font-bold tracking-[0.2em] text-[#8a5a1d] uppercase">
                 <span aria-hidden="true" className="inline-block h-1.5 w-1.5 rounded-full bg-[#d9a441]" />
                 Kids Kingdom &middot; For families
@@ -83,10 +83,11 @@ export default function KidsKingdomPage() {
               </div>
             </div>
 
-            {/* Storybook visual — pure CSS, bright palette, no image files */}
-            <div aria-hidden="true" className="kk-hero-visual relative mx-auto w-full max-w-md">
+            {/* Storybook visual — pure CSS, bright palette, no image files.
+                Hand-placed: sits right of the text and a touch low, tilted. */}
+            <div aria-hidden="true" className="kk-hero-visual relative mx-auto w-full max-w-md lg:col-span-5 lg:col-start-8 lg:mt-14 lg:rotate-1">
               <div className="absolute -top-4 right-6 h-24 w-24 rounded-full bg-gradient-to-br from-[#ecc87e] to-[#d9a441] shadow-[0_0_50px_rgba(217,164,65,0.55)]" />
-              <div className="relative overflow-hidden rounded-[2rem] border border-[#e8d5a6] bg-[#fffdf7] p-8 shadow-[0_28px_60px_-28px_rgba(122,86,36,0.4)] sm:p-10">
+              <div className="relative overflow-hidden rounded-[2.5rem] border border-[#e8d5a6] bg-[#fffdf7] p-8 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)] sm:p-10">
                 {/* fluffy cloud */}
                 <div className="absolute top-6 right-8 h-8 w-20 rounded-full bg-[#f3e7c4]" />
                 <div className="absolute top-1 right-14 h-7 w-7 rounded-full bg-[#f3e7c4]" />
@@ -108,10 +109,10 @@ export default function KidsKingdomPage() {
           </div>
         </section>
 
-        {/* Feature cards */}
+        {/* Feature cards — staggered: text heavy-left, cards stepping down */}
         <section id="what-we-do" className="kk-section scroll-mt-24 border-b border-[#4a3728]/10">
-          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-            <div className="max-w-2xl">
+          <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32">
+            <div className="max-w-2xl lg:max-w-[34rem]">
               <p className="text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
                 What happens here
               </p>
@@ -123,11 +124,11 @@ export default function KidsKingdomPage() {
                 worth singing, something to make, and something to take home.
               </p>
             </div>
-            <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {FEATURES.map((feature) => (
+            <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-x-7 lg:grid-cols-3 lg:gap-x-8">
+              {FEATURES.map((feature, i) => (
                 <article
                   key={feature.title}
-                  className="flex flex-col rounded-3xl border border-[#e8d5a6] bg-[#fffdf7] p-6 shadow-[0_18px_40px_-24px_rgba(122,86,36,0.35)] transition-shadow hover:shadow-[0_24px_50px_-24px_rgba(176,122,30,0.5)]"
+                  className={`flex flex-col rounded-[1.75rem] border border-[#e8d5a6] bg-[#fffdf7] p-6 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)] transition-shadow hover:shadow-[0_24px_50px_-24px_rgba(176,122,30,0.5)] ${i === 1 ? 'lg:mt-12' : i === 2 ? 'lg:mt-24' : ''}`}
                 >
                   <span
                     aria-hidden="true"
@@ -143,7 +144,7 @@ export default function KidsKingdomPage() {
                   </p>
                 </article>
               ))}
-              <article className="flex flex-col gap-5 rounded-3xl border border-[#e8d5a6] bg-[#fffdf7] p-6 shadow-[0_18px_40px_-24px_rgba(122,86,36,0.35)] sm:col-span-2 lg:col-span-3 sm:flex-row sm:items-center sm:p-7">
+              <article className="flex flex-col gap-5 rounded-[2rem] border border-[#e8d5a6] bg-[#fffdf7] p-6 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)] sm:col-span-2 lg:col-span-3 lg:ml-auto lg:max-w-[46rem] sm:flex-row sm:items-center sm:p-7">
                 <span
                   aria-hidden="true"
                   className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#ecc87e] to-[#d9a441] text-xl font-bold text-[#3b2a12]"
@@ -165,8 +166,8 @@ export default function KidsKingdomPage() {
 
         {/* Reassurance for parents */}
         <section id="for-parents" className="kk-section scroll-mt-24">
-          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-            <div className="rounded-[2.5rem] border border-[#e6d4a8] bg-[#fffdf7] p-8 shadow-[0_24px_60px_-32px_rgba(122,86,36,0.4)] sm:p-12 lg:grid lg:grid-cols-5 lg:gap-14">
+          <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32">
+            <div className="rounded-[2.5rem] border border-[#e6d4a8] bg-[#fffdf7] p-8 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)] sm:p-12 lg:grid lg:grid-cols-5 lg:gap-14">
               <div className="lg:col-span-2">
                 <p className="text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
                   A word for parents
@@ -204,8 +205,8 @@ export default function KidsKingdomPage() {
 
         {/* Joining CTA */}
         <section id="visit" className="kk-section scroll-mt-24">
-          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#ecc87e] via-[#d9a441] to-[#c08a2e] p-8 text-center shadow-[0_30px_70px_-30px_rgba(176,122,30,0.6)] sm:p-14">
+          <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32">
+            <div className="relative ml-auto max-w-5xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#ecc87e] via-[#d9a441] to-[#c08a2e] p-8 text-center shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)] sm:p-14">
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute -top-10 -left-10 h-40 w-40 rounded-full bg-[#fffdf7]/25"

@@ -9,7 +9,7 @@
  */
 export default function BibleShortsTeaser() {
   return (
-    <div className="hero-glow relative overflow-hidden rounded-3xl border border-[#d9a441]/40 shadow-[0_36px_90px_-44px_rgba(122,86,36,0.65)]">
+    <div className="hero-glow relative overflow-hidden rounded-[2rem] border border-[#d9a441]/40 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)]">
       <div className="texture-lines pointer-events-none absolute inset-0" aria-hidden="true" />
 
       {/* Film-perforation motif — CSS-only strip across the top edge */}

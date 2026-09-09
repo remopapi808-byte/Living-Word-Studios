@@ -39,7 +39,13 @@ export default function CommunityClose() {
   return (
     <section id="community" className="hero-glow scroll-mt-20 relative overflow-hidden">
       <div className="texture-lines pointer-events-none absolute inset-0" aria-hidden="true" />
-      <div className="relative mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 sm:py-24">
+      {/* Soft golden pool behind the form panel — depth without weight */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/2 left-1/2 hidden h-[30rem] w-[46rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(217,164,65,0.16),transparent_65%)] lg:block"
+      />
+      <div className="relative mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 sm:py-32">
+        <div className="rounded-[2.5rem] border border-[#d9a441]/30 bg-[#fffdf7]/60 px-6 py-12 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)] sm:px-12 sm:py-16">
         <p className="text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
           A welcoming digital home
         </p>
@@ -92,6 +98,7 @@ export default function CommunityClose() {
         <p className="mt-3 text-xs text-[#3c342b]/55">
           New episodes and books are still on the way — sign up to hear first.
         </p>
+        </div>
       </div>
     </section>
   );
