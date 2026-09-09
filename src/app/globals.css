@@ -90,12 +90,9 @@ body {
 .shop-toolbar {
   top: 4rem;
 }
-/* Bible Shorts page: the featured player scales to the viewport so the
-   controls always stay on screen (short laptops, tablet landscape, phones). */
-.bs-player-video {
-  max-height: 64vh;
-  min-height: 0;
-}
+/* Bible Shorts — static Coming Soon teaser: nothing to clamp here (no video),
+   the banner is pure light-palette markup. Landscape compaction for the
+   teaser lives in the short-viewport block below. */
 
 /*
  * Mobile landscape (short viewports): keep the fixed header compact and
@@ -170,32 +167,29 @@ body {
   .kk-hero-visual {
     display: none;
   }
-  /* Bible Shorts page (short-viewport safety): compact hero padding and
-     type so the CTAs stay above the fold, and clamp the featured player
-     so it fits phone landscape alongside the visible controls. */
-  .bs-hero-inner {
-    padding-top: 2.75rem;
-    padding-bottom: 1.75rem;
+  /* Bible Shorts Coming Soon teaser (short-viewport safety): compact the
+     banner padding and type so the message + gold CTA stay visible on
+     phone landscape (~390px tall) without scrolling. */
+  .bs-teaser-inner {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
-  .bs-hero-title {
-    font-size: 1.85rem;
-    line-height: 1.12;
-    margin-top: 0.6rem;
+  .bs-teaser-title {
+    font-size: 1.5rem;
+    line-height: 1.15;
+    margin-top: 0.4rem;
   }
-  .bs-hero-copy {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin-top: 0.6rem;
+  .bs-teaser-copy {
+    font-size: 0.92rem;
+    line-height: 1.45;
+    margin-top: 0.45rem;
+    max-width: 34rem;
   }
-  .bs-hero-ctas {
-    margin-top: 0.9rem;
-  }
-  .bs-section {
-    padding-top: 1.75rem;
-    padding-bottom: 1.75rem;
-  }
-  .bs-player-video {
-    max-height: 40vh;
+  .bs-teaser-cta {
+    margin-top: 0.8rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    font-size: 0.9rem;
   }
 }
 
