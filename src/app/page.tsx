@@ -1,8 +1,27 @@
+import BibleShorts from '@/components/bible-shorts';
+import CommunityClose from '@/components/community-close';
+import Hero from '@/components/hero';
+import IllustratedBooks from '@/components/illustrated-books';
+import KidsKingdom from '@/components/kids-kingdom';
+import MissionStrip from '@/components/mission-strip';
+import SiteFooter from '@/components/site-footer';
+import SiteHeader from '@/components/site-header';
+import StudioGoods from '@/components/studio-goods';
+
 export default function HomePage() {
   return (
-    <main style={{ padding: '4rem 1.5rem', fontFamily: 'system-ui, sans-serif' }}>
-      <h1>Living Word Studios — site coming online</h1>
-      <p>Scaffold restored. Full site content to follow.</p>
-    </main>
+    <>
+      <SiteHeader />
+      <main>
+        <Hero />
+        <MissionStrip />
+        <BibleShorts />
+        <KidsKingdom />
+        <IllustratedBooks />
+        <StudioGoods />
+        <CommunityClose />
+      </main>
+      <SiteFooter />
+    </>
   );
 }
