@@ -118,4 +118,64 @@ body {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
   }
+  /* Kids Kingdom page (short-viewport safety) */
+  .kk-hero-inner {
+    padding-top: 3rem;
+    padding-bottom: 1.5rem;
+  }
+  .kk-section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  /* Shrink hero type so both CTA buttons fit above the fold on
+     short landscape phones (~390px tall). */
+  .kk-hero-title {
+    font-size: 1.75rem;
+    line-height: 1.1;
+    margin-top: 0.75rem;
+  }
+  .kk-hero-copy {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-top: 0.75rem;
+  }
+  .kk-hero-ctas {
+    margin-top: 1rem;
+  }
+  /* Decorative storybook visual adds no info — drop it on short screens
+     so the hero CTA buttons stay visible without scrolling. */
+  .kk-hero-visual {
+    display: none;
+  }
+}
+
+/*
+ * Kids Kingdom page — bright family palette. Warm parchment base with soft
+ * cream cards and gold accents, the inverse of the dark cinematic pages but
+ * the same Living Word Studios brand marks (gold, wordmark, serif display).
+ */
+.kk-hero-glow {
+  background:
+    radial-gradient(ellipse 70% 65% at 50% -8%, rgba(217, 164, 65, 0.28), transparent 70%),
+    radial-gradient(ellipse 45% 40% at 92% 18%, rgba(236, 200, 126, 0.5), transparent 70%),
+    radial-gradient(ellipse 55% 50% at 6% 28%, rgba(217, 164, 65, 0.16), transparent 70%),
+    linear-gradient(180deg, #fdf6e3 0%, #f7f0e1 100%);
+}
+
+.kk-lines {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(90, 70, 50, 0.03) 0px,
+    rgba(90, 70, 50, 0.03) 1px,
+    transparent 1px,
+    transparent 10px
+  );
+}
+
+/* The global <body> carries the dark ink background from the cinematic
+   pages. On the Kids Kingdom page the bright main content covers it, but
+   overscroll/bounce would reveal the ink band — so lighten the body for
+   that route (kids page <main> carries the .kk-page marker). */
+body:has(#top.kk-page) {
+  background-color: #f7f0e1;
 }

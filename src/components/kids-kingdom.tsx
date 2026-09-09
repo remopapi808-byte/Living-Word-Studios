@@ -30,10 +30,10 @@ export default function KidsKingdom() {
             </li>
           </ul>
           <Link
-            href="#community"
+            href="/kids-kingdom"
             className="mt-8 inline-flex items-center justify-center rounded-full bg-[#f5efe3] px-6 py-3 text-sm font-semibold text-[#0b0a08] transition-colors hover:bg-[#ecc87e]"
           >
-            Join the waitlist
+            Explore Kids Kingdom
           </Link>
         </div>
         {/* Illustrative book-stack visual — pure CSS */}
