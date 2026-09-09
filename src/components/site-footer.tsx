@@ -8,37 +8,17 @@ const SECTION_LINKS = [
   { label: 'Community', href: '#community' },
 ];
 
-interface SiteFooterProps {
-  /**
-   * 'dark'  — the cinematic dark-ink closing band used across the site (default).
-   * 'light' — warm parchment closing band with deep brown text, for bright pages
-   *           like /kids-kingdom so the whole page stays light.
-   */
-  variant?: 'dark' | 'light';
-}
-
-export default function SiteFooter({ variant = 'dark' }: SiteFooterProps) {
-  const light = variant === 'light';
+/**
+ * Site footer — warm parchment closing band with deep charcoal text on every
+ * page (global light theme, 2026-09-09).
+ */
+export default function SiteFooter() {
   return (
-    <footer
-      className={`border-t ${
-        light ? 'border-[#4a3728]/10 bg-[#f2e6c8]' : 'border-white/10 bg-[#0b0a08]'
-      }`}
-    >
+    <footer className="border-t border-[#4a3728]/10 bg-[#f2e6c8]">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 py-10 sm:flex-row sm:justify-between sm:px-6">
         <div className="text-center sm:text-left">
-          <p
-            className={`font-display text-lg font-bold ${
-              light ? 'text-[#4a3728]' : 'text-[#f5efe3]'
-            }`}
-          >
-            Living Word Studios
-          </p>
-          <p
-            className={`font-display mt-1 text-sm italic ${
-              light ? 'text-[#5b4632]/80' : 'text-[#f5efe3]/60'
-            }`}
-          >
+          <p className="font-display text-lg font-bold text-[#4a3728]">Living Word Studios</p>
+          <p className="font-display mt-1 text-sm text-[#5b4632]/80 italic">
             Making the story of Jesus impossible to overlook.
           </p>
         </div>
@@ -47,24 +27,16 @@ export default function SiteFooter({ variant = 'dark' }: SiteFooterProps) {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm transition-colors ${
-                light
-                  ? 'text-[#5b4632]/80 hover:text-[#8a5a1d]'
-                  : 'text-[#f5efe3]/60 hover:text-[#ecc87e]'
-              }`}
+              className="text-sm text-[#5b4632]/80 transition-colors hover:text-[#8a5a1d]"
             >
               {link.label}
             </Link>
           ))}
         </nav>
       </div>
-      <div className={light ? 'border-t border-[#4a3728]/10' : 'border-t border-white/5'}>
-        <p
-          className={`mx-auto max-w-6xl px-4 py-5 text-center text-xs sm:px-6 ${
-            light ? 'text-[#5b4632]/60' : 'text-[#f5efe3]/40'
-          }`}
-        >
-          &copy; {new Date().getFullYear()} Living Word Studios. Rooted in Jesus.
+      <div className="border-t border-[#4a3728]/10">
+        <p className="mx-auto max-w-6xl px-4 py-5 text-center text-xs text-[#5b4632]/60 sm:px-6">
+          &copy; {new Date().getFullYear()} Living Word Studios.
         </p>
       </div>
     </footer>

@@ -18,18 +18,18 @@ const BEATS = [
 
 export default function MissionStrip() {
   return (
-    <section aria-label="Our mission" className="bg-[#0b0a08]">
+    <section aria-label="Our mission" className="bg-[#faf3e6]">
       <div className="mx-auto grid max-w-6xl gap-4 px-4 py-14 sm:grid-cols-3 sm:px-6 sm:py-16">
         {BEATS.map((beat, i) => (
           <article
             key={beat.eyebrow}
-            className="card-sheen rounded-2xl border border-white/10 bg-[#14120e] p-6 sm:p-7"
+            className="card-sheen rounded-2xl border border-[#e8d5a6] bg-[#fffdf7] p-6 shadow-[0_18px_40px_-28px_rgba(122,86,36,0.45)] sm:p-7"
           >
-            <p className="text-xs font-bold tracking-[0.22em] text-[#d9a441] uppercase">
+            <p className="text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
               {String(i + 1).padStart(2, '0')} — {beat.eyebrow}
             </p>
-            <h2 className="font-display mt-3 text-xl font-bold text-[#f5efe3]">{beat.title}</h2>
-            <p className="mt-2.5 text-sm leading-relaxed text-[#f5efe3]/65">{beat.body}</p>
+            <h2 className="font-display mt-3 text-xl font-bold text-[#2e2a26]">{beat.title}</h2>
+            <p className="mt-2.5 text-sm leading-relaxed text-[#3c342b]/70">{beat.body}</p>
           </article>
         ))}
       </div>
