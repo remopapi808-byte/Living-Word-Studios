@@ -2,9 +2,9 @@ import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <section id="top" className="hero-glow relative overflow-hidden pt-16">
+    <section id="top" className="hero-section hero-glow relative overflow-hidden pt-16">
       <div className="texture-lines pointer-events-none absolute inset-0" aria-hidden="true" />
-      <div className="relative mx-auto max-w-6xl px-4 pt-20 pb-16 sm:px-6 sm:pt-28 sm:pb-24">
+      <div className="hero-inner relative mx-auto max-w-6xl px-4 pt-20 pb-16 sm:px-6 sm:pt-28 sm:pb-24">
         <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d9a441]/40 bg-[#d9a441]/10 px-4 py-1.5 text-xs font-semibold tracking-[0.2em] text-[#ecc87e] uppercase">
           <span aria-hidden="true" className="inline-block h-1.5 w-1.5 rounded-full bg-[#d9a441]" />
           A faith-based media + commerce studio
@@ -16,9 +16,9 @@ export default function Hero() {
           &ldquo;Making the story of Jesus impossible to overlook.&rdquo;
         </p>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-[#f5efe3]/70 sm:text-lg">
-          Cinematic media, beautiful publishing, and clothing worn with quiet conviction —
-          made to be welcoming, honest, and quietly hopeful for the spiritually curious,
-          believers, families, and a design-forward generation.
+          Cinematic media, beautiful publishing, and clothing worn with quiet conviction — made to
+          be welcoming, honest, and quietly hopeful for the spiritually curious, believers,
+          families, and a design-forward generation.
         </p>
         <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
           <Link
