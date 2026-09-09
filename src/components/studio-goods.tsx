@@ -55,7 +55,7 @@ export default function StudioGoods() {
           ))}
         </div>
         <Link
-          href="#community"
+          href="/studio-goods"
           className="mt-9 inline-flex items-center justify-center rounded-full border border-[#f5efe3]/30 px-6 py-3 text-sm font-semibold text-[#f5efe3] transition-colors hover:border-[#d9a441] hover:text-[#ecc87e]"
         >
           Be first to shop the drop
