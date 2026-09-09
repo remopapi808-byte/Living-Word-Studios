@@ -66,6 +66,10 @@ body {
 .animate-slow-drift {
   animation: slow-drift 7s ease-in-out infinite;
 }
+/* Sticky shop toolbar (Studio Goods page) clears the fixed site header (4rem tall). */
+.shop-toolbar {
+  top: 4rem;
+}
 
 /*
  * Mobile landscape (short viewports): keep the fixed header compact and
@@ -103,5 +107,15 @@ body {
   .hero-inner {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
+  }
+  /* Studio Goods shop page (short-viewport safety) */
+  .shop-hero-inner {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+  }
+  .shop-toolbar {
+    top: 3rem; /* compact landscape header is 3rem tall */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 }

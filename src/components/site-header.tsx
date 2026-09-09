@@ -5,7 +5,7 @@ const NAV_LINKS = [
   { label: 'Bible Shorts', href: '#bible-shorts' },
   { label: 'Kids Kingdom', href: '#kids-kingdom' },
   { label: 'Books', href: '#books' },
-  { label: 'Studio Goods', href: '#studio-goods' },
+  { label: 'Studio Goods', href: '/studio-goods' },
   { label: 'Community', href: '#community' },
 ];
 
