@@ -16,14 +16,17 @@ const BEATS = [
   },
 ];
 
+/* Hand-staggered vertical rhythm: middle card drifts down, last card drifts further. */
+const OFFSETS = ['', 'sm:mt-10 lg:mt-12', 'sm:mt-4 lg:mt-24'];
+
 export default function MissionStrip() {
   return (
     <section aria-label="Our mission" className="bg-[#faf3e6]">
-      <div className="mx-auto grid max-w-6xl gap-4 px-4 py-14 sm:grid-cols-3 sm:px-6 sm:py-16">
+      <div className="mx-auto grid max-w-6xl gap-4 px-4 py-20 sm:grid-cols-3 sm:gap-6 sm:px-6 sm:py-20 lg:gap-8">
         {BEATS.map((beat, i) => (
           <article
             key={beat.eyebrow}
-            className="card-sheen rounded-2xl border border-[#e8d5a6] bg-[#fffdf7] p-6 shadow-[0_18px_40px_-28px_rgba(122,86,36,0.45)] sm:p-7"
+            className={`card-sheen rounded-[1.75rem] border border-[#e8d5a6] bg-[#fffdf7] p-6 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)] sm:p-7 ${OFFSETS[i]}`}
           >
             <p className="text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
               {String(i + 1).padStart(2, '0')} — {beat.eyebrow}

@@ -85,11 +85,11 @@ const ITEMS: GoodsItem[] = [
   },
 ];
 
-function GoodsCard({ item }: { item: GoodsItem }) {
+function GoodsCard({ item, offset = '' }: { item: GoodsItem; offset?: string }) {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#e8d5a6] bg-[#fffdf7] shadow-[0_18px_40px_-30px_rgba(122,86,36,0.5)] transition-colors hover:border-[#d9a441]/60">
+    <article className={`group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-[#e8d5a6] bg-[#fffdf7] shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)] transition-colors hover:border-[#d9a441]/60 ${offset}`}>
       {/* CSS-only product visual — warm parchment tile + gold monogram, no images */}
       <div
         aria-hidden="true"
@@ -162,8 +162,13 @@ function GoodsCard({ item }: { item: GoodsItem }) {
 
 export default function GoodsGrid() {
   return (
-    <section id="goods-grid" className="scroll-mt-20 border-t border-[#4a3728]/10 bg-[#faf3e6]">
-      <div className="gg-inner mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+    <section id="goods-grid" className="relative scroll-mt-20 overflow-hidden border-t border-[#4a3728]/10 bg-[#faf3e6]">
+      {/* Faint gold glow upper-right — depth behind the staggered grid */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-28 -right-32 hidden h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(217,164,65,0.14),transparent_65%)] lg:block"
+      />
+      <div className="gg-inner relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-28">
         <p className="text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
           The first drop &mdash; waitlist open
         </p>
@@ -175,9 +180,31 @@ export default function GoodsGrid() {
           hoodies, and hats worn with quiet conviction. Pick your size, join the
           drop, and be first to know when they&rsquo;re ready to order.
         </p>
-        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {ITEMS.map((item) => (
-            <GoodsCard key={item.id} item={item} />
+        {/* Staggered drop grid: cards step down across each row (adult row
+            0/high → 2/low, kids row offset opposite) so the six never read
+            as a rigid 2×3. Positive top margins only — no overlap, no clipping.
+            lg:gap-y-28 absorbs the row-1 stagger protrusion (grid tracks size
+            to the tallest child, so mt-12/24 cards hang below the track; the
+            large row gap keeps them clear of the offset kids row). */}
+        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-x-7 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-28">
+          {ITEMS.map((item, i) => (
+            <GoodsCard
+              key={item.id}
+              item={item}
+              offset={
+                i === 0
+                  ? 'lg:mt-0'
+                  : i === 1
+                    ? 'lg:mt-12'
+                    : i === 2
+                      ? 'lg:mt-24'
+                      : i === 3
+                        ? 'lg:mt-10'
+                        : i === 4
+                          ? 'lg:mt-0'
+                          : 'lg:mt-12'
+              }
+            />
           ))}
         </div>
         <p className="mt-10 text-center text-sm leading-relaxed text-[#3c342b]/60">

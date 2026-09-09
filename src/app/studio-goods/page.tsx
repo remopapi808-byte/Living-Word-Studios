@@ -17,7 +17,8 @@ export default function StudioGoodsPage() {
       <main id="top" className="bg-[#f7f0e1]">
         {/* Page hero */}
         <section className="hero-glow relative overflow-hidden border-b border-[#4a3728]/10">
-          <div className="shop-hero-inner mx-auto max-w-6xl px-4 pt-28 pb-12 sm:px-6 sm:pt-36 sm:pb-16">
+          <div className="shop-hero-inner mx-auto max-w-6xl px-4 pt-28 pb-16 sm:px-6 sm:pt-40 sm:pb-24">
+            <div className="lg:max-w-[36rem]">
             <p className="text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
               Living Word Studios
             </p>
@@ -28,9 +29,10 @@ export default function StudioGoodsPage() {
               Six pieces for the first drop — modern tees, hoodies, and hats for
               grown-ups and kids, worn with quiet conviction.
             </p>
-            <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#d9a441]/50 bg-[#fffdf7]/85 px-3.5 py-1.5 text-xs font-medium text-[#8a5a1d]/90">
+            <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#d9a441]/50 bg-[#fffdf7]/85 px-3.5 py-1.5 text-xs font-medium text-[#8a5a1d]/90">
               Waitlist open — join the drop, no checkout, no pricing yet.
             </p>
+            </div>
           </div>
         </section>
 
