@@ -182,8 +182,11 @@ export default function GoodsGrid() {
         </p>
         {/* Staggered drop grid: cards step down across each row (adult row
             0/high → 2/low, kids row offset opposite) so the six never read
-            as a rigid 2×3. Positive top margins only — no overlap, no clipping. */}
-        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-x-7 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
+            as a rigid 2×3. Positive top margins only — no overlap, no clipping.
+            lg:gap-y-28 absorbs the row-1 stagger protrusion (grid tracks size
+            to the tallest child, so mt-12/24 cards hang below the track; the
+            large row gap keeps them clear of the offset kids row). */}
+        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-x-7 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-28">
           {ITEMS.map((item, i) => (
             <GoodsCard
               key={item.id}
