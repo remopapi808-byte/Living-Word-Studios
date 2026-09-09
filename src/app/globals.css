@@ -110,12 +110,19 @@ body {
     padding-left: max(0.75rem, env(safe-area-inset-left));
     padding-right: max(0.75rem, env(safe-area-inset-right));
   }
+  /* Compact lockup variant: mark shrinks and the type scales down so the
+     whole stack still fits the 3rem bar. */
   .brand-mark {
-    height: 2.25rem;
-    width: 2.25rem;
+    height: 2rem;
+    width: 2rem;
   }
-  .brand-name {
-    font-size: 13px;
+  .brand-word-primary {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+  }
+  .brand-word-secondary {
+    font-size: 8px;
+    letter-spacing: 0.34em;
   }
   .site-header-cta {
     padding: 0.375rem 0.9rem;

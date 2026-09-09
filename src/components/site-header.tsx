@@ -9,18 +9,25 @@ const NAV_LINKS = [
 ];
 
 /**
- * Site header — warm parchment bar with deep charcoal text and gold accent
- * on every page (global light theme, 2026-09-09).
+ * Site header — warm parchment bar with charcoal text and gold accents on
+ * every page (global light theme, 2026-09-09).
+ *
+ * Alignment: the brand lockup (mark + LIVING WORD/STUDIOS type) is absolutely
+ * centered in the bar on mobile and becomes a static, left-aligned flex item
+ * beside the primary nav on md+ (md:static). On screens narrower than `sm`
+ * the "Watch Bible Shorts" CTA collapses to a gold play-icon pill so the
+ * centered lockup never collides with the CTA at ~390px phones.
  */
 export default function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#4a3728]/10 bg-[#f7f0e1]/90 backdrop-blur-md">
-      <div className="site-header-bar mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="#top" className="flex min-w-0 items-center gap-3">
+      <div className="site-header-bar relative mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+        <Link
+          href="#top"
+          aria-label="Living Word Studios — home"
+          className="brand-lockup absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 md:static md:z-auto md:translate-x-0 md:translate-y-0"
+        >
           <BrandMark />
-          <span className="brand-name font-display block text-[15px] font-bold tracking-wide text-[#4a3728]">
-            Living Word Studios
-          </span>
         </Link>
         <nav aria-label="Primary" className="hidden items-center gap-6 md:flex">
           {NAV_LINKS.map((link) => (
@@ -35,9 +42,19 @@ export default function SiteHeader() {
         </nav>
         <Link
           href="/bible-shorts"
-          className="site-header-cta shrink-0 rounded-full bg-[#d9a441] px-4 py-2 text-sm font-semibold text-[#3b2a12] transition-colors hover:bg-[#ecc87e]"
+          aria-label="Watch Bible Shorts"
+          className="site-header-cta ml-auto flex shrink-0 items-center rounded-full bg-[#d9a441] px-2.5 py-2 text-sm font-semibold text-[#3b2a12] transition-colors hover:bg-[#ecc87e] sm:px-4 md:ml-0"
         >
-          Watch Bible Shorts
+          {/* Mobile (<sm): icon-only pill so the centered lockup has room */}
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            className="h-4 w-4 shrink-0 sm:hidden"
+            fill="currentColor"
+          >
+            <path d="M8 5.5v13l11-6.5z" />
+          </svg>
+          <span className="hidden sm:inline">Watch Bible Shorts</span>
         </Link>
       </div>
     </header>
