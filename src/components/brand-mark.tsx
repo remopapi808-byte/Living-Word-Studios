@@ -30,7 +30,7 @@ export default function BrandMark() {
     return (
       <span
         aria-hidden="true"
-        className="brand-mark flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#d9a441] to-[#b4552d] font-display text-lg font-bold text-[#3b2a12]"
+        className="brand-mark flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#d9a441] to-[#b4552d] font-display text-xl font-bold text-[#3b2a12] sm:h-12 sm:w-12"
       >
         LW
       </span>
@@ -38,15 +38,15 @@ export default function BrandMark() {
   }
 
   return (
-    <span className="brand-mark flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-[#d9a441] to-[#b4552d]">
+    <span className="brand-mark flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-[#d9a441] to-[#b4552d] sm:h-12 sm:w-12">
       <img
         ref={imgRef}
         src="/logo.png"
         alt="Living Word Studios"
-        width={36}
-        height={36}
+        width={48}
+        height={48}
         onError={() => setShowMonogram(true)}
-        className="h-full w-full object-cover"
+        className="h-[88%] w-[88%] object-contain"
       />
     </span>
   );

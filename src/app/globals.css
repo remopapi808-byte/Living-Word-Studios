@@ -111,8 +111,8 @@ body {
     padding-right: max(0.75rem, env(safe-area-inset-right));
   }
   .brand-mark {
-    height: 2rem;
-    width: 2rem;
+    height: 2.25rem;
+    width: 2.25rem;
   }
   .brand-name {
     font-size: 13px;
