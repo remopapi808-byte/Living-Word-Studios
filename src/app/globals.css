@@ -1,14 +1,32 @@
 @import "tailwindcss";
 
+/*
+ * Living Word Studios — global light theme (2026-09-09).
+ *
+ * The whole platform is bright, warm, and welcoming: a cream/parchment
+ * canvas with dark-warm-charcoal text at high contrast. Gold #d9a441 /
+ * #ecc87e stay as the brand accent. Kids-first and family-first.
+ */
 @theme {
   --font-display: Georgia, "Times New Roman", "Palatino Linotype", serif;
   --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --color-ink: #0b0a08;
-  --color-coal: #14120e;
-  --color-parchment: #f5efe3;
+  /* Base canvas — warm cream / parchment. */
+  --color-parchment: #f7f0e1;
+  --color-cream: #fffdf7;
+  --color-sand: #faf3e6;
+  /* Dark warm charcoal text (readable, soft, not pure black). */
+  --color-ink: #2e2a26;
+  --color-coal: #3c342b;
+  /* Brand accents — unchanged. */
   --color-gold: #d9a441;
   --color-gold-soft: #ecc87e;
+  --color-gold-deep: #8a5a1d;
+  --color-autumn: #b07a1e;
   --color-ember: #b4552d;
+  /* Warm brown card border family (from the Kids Kingdom bright palette). */
+  --color-bark: #e8d5a6;
+  --color-brown: #4a3728;
+  --color-brown-soft: #5b4632;
 }
 
 html {
@@ -17,28 +35,30 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-ink);
-  color: var(--color-parchment);
+  background-color: var(--color-parchment);
+  color: var(--color-coal);
 }
 
 .font-display {
   font-family: var(--font-display);
 }
 
-/* Cinematic grain + glow helpers (pure CSS, no external assets) */
+/* Warm parchment glow + grain helpers (pure CSS, no external assets).
+   Same structure as the old cinematic glow; the light palette swaps the
+   dark ink radial for warm gold radials over cream. */
 .hero-glow {
   background:
-    radial-gradient(ellipse 80% 55% at 50% -10%, rgba(217, 164, 65, 0.22), transparent 70%),
-    radial-gradient(ellipse 60% 45% at 85% 30%, rgba(180, 85, 45, 0.14), transparent 70%),
-    radial-gradient(ellipse 60% 50% at 10% 25%, rgba(90, 70, 140, 0.12), transparent 70%),
-    linear-gradient(180deg, #0b0a08 0%, #14120e 55%, #0b0a08 100%);
+    radial-gradient(ellipse 80% 55% at 50% -10%, rgba(217, 164, 65, 0.25), transparent 70%),
+    radial-gradient(ellipse 60% 45% at 85% 30%, rgba(180, 85, 45, 0.1), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 10% 25%, rgba(176, 122, 30, 0.1), transparent 70%),
+    linear-gradient(180deg, #fdf6e3 0%, #f7f0e1 55%, #fdf6e3 100%);
 }
 
 .texture-lines {
   background-image: repeating-linear-gradient(
     -45deg,
-    rgba(255, 255, 255, 0.025) 0px,
-    rgba(255, 255, 255, 0.025) 1px,
+    rgba(90, 70, 50, 0.04) 0px,
+    rgba(90, 70, 50, 0.04) 1px,
     transparent 1px,
     transparent 9px
   );
@@ -47,8 +67,8 @@ body {
 .card-sheen {
   background: linear-gradient(
     160deg,
-    rgba(255, 255, 255, 0.07) 0%,
-    rgba(255, 255, 255, 0.015) 40%,
+    rgba(255, 253, 247, 0.7) 0%,
+    rgba(255, 253, 247, 0.25) 40%,
     transparent 70%
   );
 }
@@ -99,9 +119,6 @@ body {
   }
   .brand-name {
     font-size: 13px;
-  }
-  .brand-tagline {
-    display: none;
   }
   .site-header-cta {
     padding: 0.375rem 0.9rem;
@@ -184,8 +201,8 @@ body {
 
 /*
  * Kids Kingdom page — bright family palette. Warm parchment base with soft
- * cream cards and gold accents, the inverse of the dark cinematic pages but
- * the same Living Word Studios brand marks (gold, wordmark, serif display).
+ * cream cards and gold accents. With the 2026-09-09 global light restyle the
+ * site-wide palette IS this palette, so these helpers are the shared base.
  */
 .kk-hero-glow {
   background:
@@ -205,10 +222,6 @@ body {
   );
 }
 
-/* The global <body> carries the dark ink background from the cinematic
-   pages. On the Kids Kingdom page the bright main content covers it, but
-   overscroll/bounce would reveal the ink band — so lighten the body for
-   that route (kids page <main> carries the .kk-page marker). */
-body:has(#top.kk-page) {
-  background-color: #f7f0e1;
-}
+/* The global <body> is parchment now (site-wide light theme) — overscroll
+   on every page reveals cream, not ink. The old per-route override is no
+   longer needed (kept as a harmless anchor: every page main carries #top). */

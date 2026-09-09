@@ -13,7 +13,7 @@ export default function BibleShortsPage() {
   return (
     <>
       <SiteHeader />
-      <main id="top" className="bg-[#0b0a08]">
+      <main id="top" className="bg-[#f7f0e1]">
         <BibleShortsGallery />
       </main>
       <SiteFooter />

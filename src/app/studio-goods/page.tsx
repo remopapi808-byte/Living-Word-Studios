@@ -32,8 +32,8 @@ const FILTERS: Filter[] = ['All', 'Hoodies', 'Tees', 'Hats'];
  */
 const PRODUCTS: Product[] = [
   {
-    id: 'rooted-in-jesus-hoodie',
-    name: 'Rooted in Jesus Hoodie',
+    id: 'abide-hoodie',
+    name: 'Abide Hoodie',
     category: 'Hoodies',
     price: 58,
     mark: 'H',
@@ -105,11 +105,11 @@ const PRODUCTS: Product[] = [
   },
 ];
 
-/** Per-category gradient swatches for the CSS-only product tiles. */
+/** Per-category gradient swatches for the CSS-only product tiles (light). */
 const TILE_GRADIENT: Record<Category, string> = {
-  Hoodies: 'from-[#3b2a12] via-[#1c1710] to-[#0b0a08]',
-  Tees: 'from-[#2c2417] via-[#16130f] to-[#0b0a08]',
-  Hats: 'from-[#33200f] via-[#191109] to-[#0b0a08]',
+  Hoodies: 'from-[#fdf6e3] via-[#fffdf7] to-[#f3e7c4]',
+  Tees: 'from-[#faf3e6] via-[#fffdf7] to-[#f0e2c0]',
+  Hats: 'from-[#fdf6e3] via-[#fffdf7] to-[#f0e2c0]',
 };
 
 export default function StudioGoodsPage() {
@@ -178,28 +178,28 @@ export default function StudioGoodsPage() {
   return (
     <>
       <SiteHeader />
-      <main id="top" className="bg-[#0b0a08]">
+      <main id="top" className="bg-[#f7f0e1]">
         {/* Page hero */}
-        <section className="hero-glow relative overflow-hidden border-b border-white/10">
+        <section className="hero-glow relative overflow-hidden border-b border-[#4a3728]/10">
           <div className="shop-hero-inner mx-auto max-w-6xl px-4 pt-28 pb-12 sm:px-6 sm:pt-36 sm:pb-16">
-            <p className="text-xs font-bold tracking-[0.22em] text-[#d9a441] uppercase">
+            <p className="text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
               Living Word Studios
             </p>
-            <h1 className="font-display mt-3 max-w-2xl text-4xl font-bold tracking-tight text-[#f5efe3] sm:text-6xl">
+            <h1 className="font-display mt-3 max-w-2xl text-4xl font-bold tracking-tight text-[#2e2a26] sm:text-6xl">
               Studio Goods
             </h1>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#f5efe3]/70 sm:text-lg">
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#3c342b]/75 sm:text-lg">
               Hoodies, tees, and hats worn with quiet conviction — Scripture-inspired
               clothing that carries hope into ordinary days.
             </p>
-            <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#d9a441]/30 bg-[#d9a441]/5 px-3.5 py-1.5 text-xs font-medium text-[#ecc87e]/90">
+            <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#d9a441]/50 bg-[#fffdf7]/85 px-3.5 py-1.5 text-xs font-medium text-[#8a5a1d]/90">
               Placeholder storefront — concept pricing, demo cart, no checkout.
             </p>
           </div>
         </section>
 
         {/* Sticky shop toolbar: category filters + sort + cart */}
-        <div className="shop-toolbar sticky z-40 border-b border-white/10 bg-[#0b0a08]/90 backdrop-blur-md">
+        <div className="shop-toolbar sticky z-40 border-b border-[#4a3728]/10 bg-[#faf3e6]/95 backdrop-blur-md">
           <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-2 px-4 py-3 sm:px-6">
             <div role="group" aria-label="Filter products by category" className="flex flex-wrap items-center gap-2">
               {FILTERS.map((item) => {
@@ -212,8 +212,8 @@ export default function StudioGoodsPage() {
                     onClick={() => setFilter(item)}
                     className={
                       active
-                        ? 'rounded-full bg-[#d9a441] px-3.5 py-1.5 text-sm font-semibold text-[#0b0a08]'
-                        : 'rounded-full border border-white/15 px-3.5 py-1.5 text-sm font-medium text-[#f5efe3]/75 hover:border-[#d9a441]/60 hover:text-[#ecc87e]'
+                        ? 'rounded-full bg-[#d9a441] px-3.5 py-1.5 text-sm font-semibold text-[#3b2a12]'
+                        : 'rounded-full border border-[#3c342b]/25 px-3.5 py-1.5 text-sm font-medium text-[#3c342b]/80 hover:border-[#d9a441]/70 hover:text-[#8a5a1d]'
                     }
                   >
                     {item}
@@ -226,7 +226,7 @@ export default function StudioGoodsPage() {
               <select
                 value={sort}
                 onChange={(event) => setSort(event.target.value as SortKey)}
-                className="rounded-full border border-white/15 bg-[#14120e] px-3.5 py-1.5 text-sm font-medium text-[#f5efe3] focus:border-[#d9a441]/70 focus:outline-none"
+                className="rounded-full border border-[#3c342b]/25 bg-[#fffdf7] px-3.5 py-1.5 text-sm font-medium text-[#3c342b] focus:border-[#d9a441]/70 focus:outline-none"
               >
                 <option value="featured">Featured</option>
                 <option value="price-asc">Price: Low to High</option>
@@ -242,14 +242,14 @@ export default function StudioGoodsPage() {
               aria-expanded={cartOpen}
               aria-controls="cart-drawer"
               aria-label={`Open demo cart, ${cartCount} ${cartCount === 1 ? 'item' : 'items'}`}
-              className="relative rounded-full border border-white/15 px-4 py-1.5 text-sm font-semibold text-[#f5efe3] transition-colors hover:border-[#d9a441] hover:text-[#ecc87e]"
+              className="relative rounded-full border border-[#3c342b]/25 px-4 py-1.5 text-sm font-semibold text-[#3c342b] transition-colors hover:border-[#d9a441] hover:text-[#8a5a1d]"
             >
               <ShoppingBag className="-mt-0.5 mr-1.5 inline h-4 w-4" aria-hidden="true" />
               Cart
               {cartCount > 0 && (
                 <span
                   aria-hidden="true"
-                  className="absolute -top-1.5 -right-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#d9a441] px-1 text-[11px] font-bold text-[#0b0a08]"
+                  className="absolute -top-1.5 -right-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#d9a441] px-1 text-[11px] font-bold text-[#3b2a12]"
                 >
                   {cartCount}
                 </span>
@@ -260,7 +260,7 @@ export default function StudioGoodsPage() {
 
         {/* Product grid */}
         <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-          <p className="text-xs font-semibold tracking-widest text-[#f5efe3]/45 uppercase">
+          <p className="text-xs font-semibold tracking-widest text-[#3c342b]/55 uppercase">
             {visibleProducts.length} {visibleProducts.length === 1 ? 'product' : 'products'}
             {filter !== 'All' ? ` in ${filter}` : ''}
           </p>
@@ -268,7 +268,7 @@ export default function StudioGoodsPage() {
             {visibleProducts.map((product) => (
               <article
                 key={product.id}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#14120e] transition-colors hover:border-[#d9a441]/40"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-[#e8d5a6] bg-[#fffdf7] shadow-[0_18px_40px_-30px_rgba(122,86,36,0.5)] transition-colors hover:border-[#d9a441]/60"
               >
                 {/* Garment visual — pure CSS placeholder tile */}
                 <div
@@ -276,31 +276,31 @@ export default function StudioGoodsPage() {
                   className={`texture-lines relative flex h-44 items-center justify-center bg-gradient-to-br ${TILE_GRADIENT[product.category]}`}
                 >
                   <div className="card-sheen absolute inset-0" />
-                  <span className="font-display flex h-20 w-20 items-center justify-center rounded-full border border-[#d9a441]/40 bg-[#d9a441]/10 text-3xl font-bold text-[#ecc87e] transition-colors group-hover:bg-[#d9a441]/20">
+                  <span className="font-display flex h-20 w-20 items-center justify-center rounded-full border border-[#d9a441]/50 bg-[#d9a441]/15 text-3xl font-bold text-[#8a5a1d] transition-colors group-hover:bg-[#d9a441]/25">
                     {product.mark}
                   </span>
-                  <span className="absolute top-3 left-3 rounded-full border border-white/10 bg-[#0b0a08]/60 px-2.5 py-0.5 text-[11px] font-semibold tracking-wider text-[#f5efe3]/65 uppercase">
+                  <span className="absolute top-3 left-3 rounded-full border border-[#4a3728]/15 bg-[#fffdf7]/85 px-2.5 py-0.5 text-[11px] font-semibold tracking-wider text-[#5b4632]/85 uppercase">
                     {product.category}
                   </span>
                 </div>
                 <div className="flex flex-1 flex-col gap-3 p-5">
                   <div>
-                    <h3 className="font-display text-lg font-bold text-[#f5efe3]">
+                    <h3 className="font-display text-lg font-bold text-[#2e2a26]">
                       {product.name}
                     </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-[#f5efe3]/60">
+                    <p className="mt-1.5 text-sm leading-relaxed text-[#3c342b]/65">
                       {product.blurb}
                     </p>
                   </div>
                   <div className="mt-auto flex items-center justify-between gap-3 pt-1">
-                    <p className="text-sm font-bold whitespace-nowrap text-[#ecc87e]">
+                    <p className="text-sm font-bold whitespace-nowrap text-[#8a5a1d]">
                       ${product.price}
                     </p>
                     <button
                       type="button"
                       onClick={() => addToCart(product)}
                       aria-label={`Add ${product.name} to cart`}
-                      className="rounded-full bg-[#d9a441] px-4 py-2 text-sm font-semibold text-[#0b0a08] transition-colors hover:bg-[#ecc87e]"
+                      className="rounded-full bg-[#d9a441] px-4 py-2 text-sm font-semibold text-[#3b2a12] transition-colors hover:bg-[#ecc87e]"
                     >
                       Add to Cart
                     </button>
@@ -309,7 +309,7 @@ export default function StudioGoodsPage() {
               </article>
             ))}
           </div>
-          <p className="mt-10 text-center text-xs leading-relaxed text-[#f5efe3]/40">
+          <p className="mt-10 text-center text-xs leading-relaxed text-[#3c342b]/55">
             Demo storefront — all prices are placeholder concept pricing, and the cart is
             a demo with no checkout or payment.
           </p>
@@ -321,7 +321,7 @@ export default function StudioGoodsPage() {
       {cartOpen ? (
         <>
           <div
-            className="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-[70] bg-[#2e2a26]/50 backdrop-blur-sm"
             onClick={closeCart}
             aria-hidden="true"
           />
@@ -330,12 +330,12 @@ export default function StudioGoodsPage() {
             role="dialog"
             aria-modal="true"
             aria-label="Demo cart"
-            className="fixed inset-y-0 right-0 z-[80] flex w-full max-w-md flex-col border-l border-white/10 bg-[#14120e] shadow-2xl"
+            className="fixed inset-y-0 right-0 z-[80] flex w-full max-w-md flex-col border-l border-[#4a3728]/10 bg-[#fffdf7] shadow-2xl"
           >
-            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+            <div className="flex items-center justify-between border-b border-[#4a3728]/10 px-5 py-4">
               <div className="flex items-center gap-2.5">
-                <h2 className="font-display text-lg font-bold text-[#f5efe3]">Your Cart</h2>
-                <span className="rounded-full border border-[#d9a441]/40 px-2 py-0.5 text-[10px] font-bold tracking-[0.18em] text-[#ecc87e] uppercase">
+                <h2 className="font-display text-lg font-bold text-[#2e2a26]">Your Cart</h2>
+                <span className="rounded-full border border-[#d9a441]/50 px-2 py-0.5 text-[10px] font-bold tracking-[0.18em] text-[#8a5a1d] uppercase">
                   Demo
                 </span>
               </div>
@@ -344,7 +344,7 @@ export default function StudioGoodsPage() {
                 type="button"
                 onClick={closeCart}
                 aria-label="Close cart"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-[#f5efe3] transition-colors hover:border-[#d9a441] hover:text-[#ecc87e]"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-[#3c342b]/25 text-[#3c342b] transition-colors hover:border-[#d9a441] hover:text-[#8a5a1d]"
               >
                 <X className="h-4 w-4" aria-hidden="true" />
               </button>
@@ -352,8 +352,8 @@ export default function StudioGoodsPage() {
             <div className="flex-1 overflow-y-auto px-5 py-4">
               {cartLines.length === 0 ? (
                 <div className="mt-10 text-center">
-                  <p className="text-sm text-[#f5efe3]/55">Your cart is empty.</p>
-                  <p className="mt-1 text-xs text-[#f5efe3]/40">
+                  <p className="text-sm text-[#3c342b]/65">Your cart is empty.</p>
+                  <p className="mt-1 text-xs text-[#3c342b]/50">
                     Add something from the drop to see it here.
                   </p>
                 </div>
@@ -362,13 +362,13 @@ export default function StudioGoodsPage() {
                   {cartLines.map((line) => (
                     <li
                       key={line.id}
-                      className="flex items-start justify-between gap-3 rounded-xl border border-white/10 bg-[#0b0a08]/70 p-4"
+                      className="flex items-start justify-between gap-3 rounded-xl border border-[#e8d5a6] bg-[#f7f0e1]/80 p-4"
                     >
                       <div className="min-w-0">
-                        <p className="text-sm font-semibold text-[#f5efe3]">
+                        <p className="text-sm font-semibold text-[#2e2a26]">
                           {line.product.name}
                         </p>
-                        <p className="mt-0.5 text-xs text-[#f5efe3]/50">
+                        <p className="mt-0.5 text-xs text-[#3c342b]/55">
                           {line.product.category} · ${line.product.price} each
                         </p>
                         <div className="mt-3 flex items-center gap-2">
@@ -376,13 +376,13 @@ export default function StudioGoodsPage() {
                             type="button"
                             onClick={() => adjustQty(line.id, -1)}
                             aria-label={`Decrease quantity of ${line.product.name}`}
-                            className="flex h-7 w-7 items-center justify-center rounded-full border border-white/15 text-[#f5efe3] transition-colors hover:border-[#d9a441] hover:text-[#ecc87e]"
+                            className="flex h-7 w-7 items-center justify-center rounded-full border border-[#3c342b]/25 text-[#3c342b] transition-colors hover:border-[#d9a441] hover:text-[#8a5a1d]"
                           >
                             <Minus className="h-3.5 w-3.5" aria-hidden="true" />
                           </button>
                           <span
                             aria-live="polite"
-                            className="w-6 text-center text-sm font-semibold text-[#f5efe3]"
+                            className="w-6 text-center text-sm font-semibold text-[#2e2a26]"
                           >
                             {line.qty}
                           </span>
@@ -390,7 +390,7 @@ export default function StudioGoodsPage() {
                             type="button"
                             onClick={() => adjustQty(line.id, 1)}
                             aria-label={`Increase quantity of ${line.product.name}`}
-                            className="flex h-7 w-7 items-center justify-center rounded-full border border-white/15 text-[#f5efe3] transition-colors hover:border-[#d9a441] hover:text-[#ecc87e]"
+                            className="flex h-7 w-7 items-center justify-center rounded-full border border-[#3c342b]/25 text-[#3c342b] transition-colors hover:border-[#d9a441] hover:text-[#8a5a1d]"
                           >
                             <Plus className="h-3.5 w-3.5" aria-hidden="true" />
                           </button>
@@ -398,13 +398,13 @@ export default function StudioGoodsPage() {
                             type="button"
                             onClick={() => removeFromCart(line.id)}
                             aria-label={`Remove ${line.product.name} from cart`}
-                            className="ml-2 text-xs font-medium text-[#f5efe3]/55 underline underline-offset-2 transition-colors hover:text-[#ecc87e]"
+                            className="ml-2 text-xs font-medium text-[#3c342b]/55 underline underline-offset-2 transition-colors hover:text-[#8a5a1d]"
                           >
                             Remove
                           </button>
                         </div>
                       </div>
-                      <p className="text-sm font-bold whitespace-nowrap text-[#ecc87e]">
+                      <p className="text-sm font-bold whitespace-nowrap text-[#8a5a1d]">
                         ${line.product.price * line.qty}
                       </p>
                     </li>
@@ -412,12 +412,12 @@ export default function StudioGoodsPage() {
                 </ul>
               )}
             </div>
-            <div className="border-t border-white/10 px-5 py-4">
+            <div className="border-t border-[#4a3728]/10 px-5 py-4">
               <div className="flex items-center justify-between">
-                <p className="text-sm font-semibold text-[#f5efe3]">Subtotal</p>
-                <p className="font-display text-xl font-bold text-[#ecc87e]">${subtotal}</p>
+                <p className="text-sm font-semibold text-[#2e2a26]">Subtotal</p>
+                <p className="font-display text-xl font-bold text-[#8a5a1d]">${subtotal}</p>
               </div>
-              <p className="mt-2 text-xs leading-relaxed text-[#f5efe3]/45">
+              <p className="mt-2 text-xs leading-relaxed text-[#3c342b]/55">
                 Demo cart — no checkout and no payment. Prices are placeholders.
               </p>
             </div>

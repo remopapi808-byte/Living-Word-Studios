@@ -43,7 +43,7 @@ const PARENT_PROMISES = [
 export default function KidsKingdomPage() {
   return (
     <>
-      <SiteHeader variant="light" />
+      <SiteHeader />
       <main id="top" className="kk-page bg-[#f7f0e1] text-[#5b4632]">
         {/* Hero */}
         <section
@@ -231,7 +231,7 @@ export default function KidsKingdomPage() {
           </div>
         </section>
       </main>
-      <SiteFooter variant="light" />
+      <SiteFooter />
     </>
   );
 }
