@@ -1,8 +1,8 @@
 /**
  * Living Word Studios — coded minimalist brand lockup.
  *
- * The old institutional logo graphic (/logo.png in a gold gradient circle,
- * with an "LW" monogram fallback) is permanently retired. The global header
+ * The old institutional logo graphic (a gold gradient circle with an "LW"
+ * monogram fallback) is permanently retired. The global header
  * brand is now a pure inline SVG mark + type lockup:
  *
  *   Mark  — a razor-thin golden vertical line (the cross, #b07a1e)
