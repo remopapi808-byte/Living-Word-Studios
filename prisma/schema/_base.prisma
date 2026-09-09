@@ -1,0 +1,159 @@
+// @polsia:framework-owned — DO NOT EDIT.
+// Prisma datasource + generator. App or module schema files add models only.
+// Scaffold-faithful minimal restore mapped from 01-schema.sql (10 tables,
+// 1 enum, better-auth account/session/user/verification shapes preserved).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum CheckoutOrderStatus {
+  PENDING
+  PAID
+}
+
+model Address {
+  id        String   @id
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  name      String
+  street    String
+  city      String
+  state     String
+  zip       String
+  country   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, createdAt])
+  @@map("Address")
+}
+
+model CheckoutOrder {
+  id              String              @id
+  stripeSessionId String?             @unique
+  status          CheckoutOrderStatus @default(PENDING)
+  totalCents      Int
+  lineItems       Json
+  createdAt       DateTime            @default(now())
+  paidAt          DateTime?
+  userId          String?
+  user            User?               @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+  @@index([userId, createdAt])
+  @@map("CheckoutOrder")
+}
+
+model DigitalPurchase {
+  id         String   @id
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  productId  String
+  acquiredAt DateTime @default(now())
+
+  @@unique([userId, productId])
+  @@index([userId, acquiredAt])
+  @@map("DigitalPurchase")
+}
+
+model StorefrontEvent {
+  id        String   @id
+  eventName String
+  source    String
+  productId String?
+  createdAt DateTime @default(now())
+
+  @@index([eventName, createdAt])
+  @@index([source, createdAt])
+  @@map("StorefrontEvent")
+}
+
+model WaitlistEntry {
+  id        String   @id
+  email     String   @unique
+  createdAt DateTime @default(now())
+
+  @@map("WaitlistEntry")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("account")
+}
+
+model ContactMessage {
+  id        String   @id
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+
+  @@map("contact_message")
+}
+
+model Session {
+  id            String   @id
+  expiresAt     DateTime
+  token         String   @unique
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  ipAddress     String?
+  userAgent     String?
+  impersonatedBy String?
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("session")
+}
+
+model User {
+  id            String    @id
+  name          String
+  email         String    @unique
+  emailVerified Boolean
+  image         String?
+  role          String?   @default("user")
+  banned        Boolean?  @default(false)
+  banReason     String?
+  banExpires    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts          Account[]
+  sessions          Session[]
+  addresses         Address[]
+  checkoutOrders    CheckoutOrder[]
+  digitalPurchases  DigitalPurchase[]
+
+  @@map("user")
+}
+
+model Verification {
+  id         String    @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime? @default(now())
+  updatedAt  DateTime? @updatedAt
+
+  @@map("verification")
+}
