@@ -346,7 +346,7 @@ body {
 /* --- Short-viewport landscape compaction (max-height: 480px) for the two
        new routes. Separate block — existing rules untouched. The compact
        header is 3rem (48px) tall; unlayered rules beat the tailwind
-       utilities used inline, matching the kk-*/bs-* pattern on the site. --- */
+       utilities used inline, matching the existing kk/bs class convention. --- */
 @media (max-height: 480px) {
   /* Media Room — compact hero + featured panel so the player cannot overflow */
   .bsmr-hero-inner {

@@ -122,9 +122,9 @@ function ShepherdIllustration() {
       <rect width="400" height="300" fill="#fdf3dc" />
       <circle cx="330" cy="70" r="60" fill="#ecc87e" opacity="0.3" />
       {/* stars */}
-      {[
+      {([
         [52, 42], [120, 26], [196, 48], [268, 30], [90, 78],
-      ].map(([x, y], i) => (
+      ] as const).map(([x, y], i) => (
         <path key={i} d={`M${x} ${y - 5} L${x + 1.6} ${y - 1.6} L${x + 5} ${y} L${x + 1.6} ${y + 1.6} L${x} ${y + 5} L${x - 1.6} ${y + 1.6} L${x - 5} ${y} L${x - 1.6} ${y - 1.6} Z`} fill="#d9a441" />
       ))}
       {/* far hills */}
