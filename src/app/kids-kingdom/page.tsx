@@ -2,13 +2,15 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import CommunityClose from '@/components/community-close';
 import GoodsGrid from '@/components/goods-grid';
+import LookInsideCarousel from '@/components/look-inside-carousel';
+import ParentWaitlist from '@/components/parent-waitlist';
 import SiteFooter from '@/components/site-footer';
 import SiteHeader from '@/components/site-header';
 
 export const metadata: Metadata = {
   title: 'Kids Kingdom — Big faith for little hearts | Living Word Studios',
   description:
-    'Kids Kingdom at Living Word Studios: Bible story time, worship and songs, crafts and activities, and family resources — a bright, welcoming space where big faith meets little hearts. Come as you are.',
+    'Kids Kingdom at Living Word Studios: Bible story time, worship and songs, crafts and activities, and family resources — plus Look Inside previews of the forthcoming Illustrated Books and a parent waitlist. A bright, welcoming space where big faith meets little hearts. Come as you are.',
 };
 
 const FEATURES = [
@@ -108,6 +110,11 @@ export default function KidsKingdomPage() {
             </div>
           </div>
         </section>
+
+        {/* Look Inside — Illustrated Books preview gallery (the family-library
+            feature) with the parent waitlist immediately beneath it. */}
+        <LookInsideCarousel />
+        <ParentWaitlist />
 
         {/* Feature cards — staggered: text heavy-left, cards stepping down */}
         <section id="what-we-do" className="kk-section scroll-mt-24 border-b border-[#4a3728]/10">
