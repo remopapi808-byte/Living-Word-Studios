@@ -64,6 +64,7 @@ CREATE TABLE "StorefrontEvent" (
 CREATE TABLE "WaitlistEntry" (
     id text NOT NULL,
     email text NOT NULL,
+    source text,
     "createdAt" timestamp(3) without time zone NOT NULL
 );
 CREATE TABLE account (

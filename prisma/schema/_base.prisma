@@ -76,6 +76,7 @@ model StorefrontEvent {
 model WaitlistEntry {
   id        String   @id
   email     String   @unique
+  source    String?
   createdAt DateTime @default(now())
 
   @@map("WaitlistEntry")
