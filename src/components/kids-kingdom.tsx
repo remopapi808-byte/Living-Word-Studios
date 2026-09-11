@@ -34,12 +34,33 @@ export default function KidsKingdom() {
               Made for bedtime reading, together
             </li>
           </ul>
-          <Link
-            href="/kids-kingdom"
-            className="mt-8 inline-flex items-center justify-center rounded-full bg-[#d9a441] px-6 py-3 text-sm font-semibold text-[#3b2a12] transition-colors hover:bg-[#ecc87e]"
-          >
-            Explore Kids Kingdom
-          </Link>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Link
+              href="/kids-kingdom"
+              className="inline-flex items-center justify-center rounded-full bg-[#d9a441] px-6 py-3 text-sm font-semibold text-[#3b2a12] transition-colors hover:bg-[#ecc87e]"
+            >
+              Explore Kids Kingdom
+            </Link>
+            <a
+              href="/assets/coloring-page-parable.pdf"
+              download
+              aria-label="Download free printable coloring page (PDF)"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-[#b07a1e]/50 bg-transparent px-6 py-3 text-sm font-semibold text-[#8a5a1d] transition-colors hover:border-[#d9a441] hover:bg-[#d9a441]/10"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                className="h-4 w-4"
+                aria-hidden="true"
+              >
+                <path d="M12 4v10m0 0-4-4m4 4 4-4 M4 19h16" />
+              </svg>
+              Download Free Coloring Page Parable (PDF)
+            </a>
+          </div>
         </div>
         {/* Illustrative book-stack visual — pure CSS, light palette. Sits left and
             slightly high so it leans against the right-side text column. */}
