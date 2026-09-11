@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 
 /**
@@ -87,6 +87,36 @@ export default function AudioDramaPlayer() {
     audio.load();
     void audio.play().catch(() => setHasError(true));
   }
+
+  // The <audio> element is server-rendered with preload="auto", so the native
+  // load can fail BEFORE React hydrates and attaches onError. A failure in that
+  // pre-hydration window would silently leave the player stuck looking ready.
+  // Attach a ref-based 'error' listener on mount and sample the element's error
+  // state right after hydration so an early load failure still surfaces the
+  // alert + Try again. 'error' is the deterministic signal (never false-
+  // positives a healthy load); transient 'stalled' buffering is deliberately
+  // NOT treated as failure so working playback is never ripped away.
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    let alive = true;
+    const fail = () => {
+      if (alive) setHasError(true);
+    };
+    audio.addEventListener('error', fail);
+    // Sample readiness shortly after hydration: if the native error already
+    // fired (audio.error set — src aborted/refused during preload), transition
+    // to the error state. A healthy in-flight load has audio.error === null, so
+    // this never flips a working stream.
+    const sampleId = window.setTimeout(() => {
+      if (alive && audio.error) setHasError(true);
+    }, 250);
+    return () => {
+      alive = false;
+      audio.removeEventListener('error', fail);
+      window.clearTimeout(sampleId);
+    };
+  }, []);
 
   function handleScrubStart() {
     scrubbingRef.current = true;
