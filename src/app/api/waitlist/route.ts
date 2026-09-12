@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 import { prisma } from '@/lib/db';
 
@@ -59,7 +58,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: true, alreadyJoined: true });
     }
     await prisma.waitlistEntry.create({
-      data: { id: randomUUID(), email: parsed.data.email, source: parsed.data.source ?? null },
+      data: { email: parsed.data.email, source: parsed.data.source ?? null },
     });
     return NextResponse.json({ ok: true });
   } catch (err) {

@@ -30,7 +30,7 @@ SET search_path TO public;
 
 -- StorefrontEvent
 
--- WaitlistEntry
+-- waitlist_signups
 
 -- account
 
