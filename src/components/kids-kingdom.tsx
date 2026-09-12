@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 export default function KidsKingdom() {
   return (
     <section id="kids-kingdom" className="relative scroll-mt-20 overflow-hidden bg-[#faf3e6]">
@@ -35,12 +33,12 @@ export default function KidsKingdom() {
             </li>
           </ul>
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link
-              href="/kids-kingdom"
+            <a
+              href="#community"
               className="inline-flex items-center justify-center rounded-full bg-[#d9a441] px-6 py-3 text-sm font-semibold text-[#3b2a12] transition-colors hover:bg-[#ecc87e]"
             >
               Explore Kids Kingdom
-            </Link>
+            </a>
             <a
               href="/assets/coloring-page-parable.pdf"
               download
