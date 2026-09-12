@@ -5,11 +5,11 @@ import { useCallback, useRef, useState } from 'react';
 /**
  * Look Inside — Illustrated Books preview gallery (Kids Kingdom).
  *
- * A touch-friendly "flip through the books" carousel of three ORIGINAL
- * parable-style page-spread templates in the brand voice (quietly hopeful,
- * honest, beautiful). Text is written from scratch — no copyrighted Bible
- * text — each page spread is marked as a preview of the forthcoming
- * Illustrated Books line.
+ * A touch-friendly "flip through the books" carousel of three preview pages
+ * from the forthcoming Illustrated Books line. Each spread pairs a REAL page
+ * from the first Living Word Studios books (owner artwork in
+ * public/assets/artwork) with original, from-scratch story text in the brand
+ * voice (quietly hopeful, honest, beautiful) — no copyrighted Bible text.
  *
  * Interaction model:
  * - Swipeable: touchstart/touchmove/touchend with a 48px horizontal
@@ -22,11 +22,7 @@ import { useCallback, useRef, useState } from 'react';
  *   group with aria-label and aria-hidden when off-screen, a visually-hidden
  *   aria-live status announces slide changes, and reduced-motion disables
  *   the slide transition (CSS).
- * - Illustrations are hand-built inline SVGs/CSS shapes — no external image
- *   files, no AI images, no icon libraries.
  */
-
-type Illustration = 'sower' | 'shepherd' | 'mustard';
 
 interface Spread {
   id: string;
@@ -35,7 +31,8 @@ interface Spread {
   title: string; // the parable retelling
   verse: string; // honest provenance note
   paragraphs: [string, string];
-  illustration: Illustration;
+  image: string; // real page art from the first books
+  alt: string;
 }
 
 const SLIDES: Spread[] = [
@@ -49,7 +46,8 @@ const SLIDES: Spread[] = [
       'Early, before the heat of the day, a farmer walked out with a sack of seed. He did not hoard it. He flung it wide — over the path where it would be walked on, into the thorns where it would be crowded, and onto the good, patient dirt where it could finally rest.',
       'The seed was the same. Only the ground differed. And in the good ground the smallest seed pushed down a root, then another, then broke through into the light — little by little, a harvest. Quietly, the story asks: what kind of ground are we?',
     ],
-    illustration: 'sower',
+    image: '/assets/artwork/page-let-the-children-come.png',
+    alt: '"Let the Children Come" — black-and-white page art from the first Living Word Studios books (preview)',
   },
   {
     id: 'the-one-that-was-lost',
@@ -61,7 +59,8 @@ const SLIDES: Spread[] = [
       'The shepherd counted ninety-nine and still felt the missing one like a stone in his shoe. So he left the safe flock on the hill and walked into the dark, calling a name only he knew. He did not find the sheep. The sheep found his voice.',
       'He carried it home on his shoulders, laughing, and the whole village turned out to celebrate the one that was brought home. In this house, nothing lost is ever counted as a loss.',
     ],
-    illustration: 'shepherd',
+    image: '/assets/artwork/page-he-is-alive.png',
+    alt: '"He Is Alive!" — black-and-white page art from the first Living Word Studios books (preview)',
   },
   {
     id: 'the-smallest-seed',
@@ -73,126 +72,10 @@ const SLIDES: Spread[] = [
       'It was the smallest seed in the garden — the kind you could lose between two fingers. But it did what seeds do: it trusted the dirt, drank the rain, and reached for the sun. Seasons passed, and children climbed where once nothing stood.',
       'Birds nested in its branches, and travelers rested in its shade. Great shelter from a tiny beginning — which is how the storytellers say the Kingdom grows in us, too.',
     ],
-    illustration: 'mustard',
+    image: '/assets/artwork/page-dont-be-afraid.png',
+    alt: '"Don\'t Be Afraid" — black-and-white page art from the first Living Word Studios books (preview)',
   },
 ];
-
-/* ------------------------------------------------------------------ */
-/* Hand-built page illustrations — pure inline SVG, brand palette only. */
-/* ------------------------------------------------------------------ */
-
-function SowerIllustration() {
-  return (
-    <svg viewBox="0 0 400 300" role="img" aria-label="Warm illustrated field with a sun, hills, scattered seeds and a young sprout" className="h-auto w-full">
-      {/* sky */}
-      <rect width="400" height="300" fill="#fdf6e3" />
-      <rect y="0" width="400" height="150" fill="#faf0d7" />
-      {/* sun */}
-      <circle cx="330" cy="58" r="46" fill="#ecc87e" opacity="0.45" />
-      <circle cx="330" cy="58" r="30" fill="#ecc87e" />
-      {/* hills */}
-      <path d="M0 210 Q 90 150 190 205 T 400 210 L400 300 L0 300 Z" fill="#e8d5a6" />
-      <path d="M0 245 Q 120 195 260 240 T 400 250 L400 300 L0 300 Z" fill="#dfc488" />
-      {/* path */}
-      <path d="M40 300 Q 150 230 235 210 L255 216 Q 160 245 70 300 Z" fill="#d0ac68" />
-      {/* thorn branch */}
-      <path d="M300 205 l12 -14 l10 8 l14 -16 l8 10" stroke="#8a5a1d" strokeWidth="3" fill="none" strokeLinecap="round" />
-      {/* scattered seeds */}
-      {[
-        [120, 235], [150, 250], [200, 260], [262, 255], [300, 265], [250, 275], [180, 240], [230, 245],
-      ].map(([x, y], i) => (
-        <ellipse key={i} cx={x} cy={y} rx="2.6" ry="1.6" fill="#8a5a1d" />
-      ))}
-      {/* farmer */}
-      <circle cx="66" cy="172" r="11" fill="#4a3728" />
-      <path d="M44 218 q0 -26 22 -26 q22 0 22 26 l-4 52 q-4 14 -18 14 q-14 0 -18 -14 Z" fill="#5b4632" />
-      <path d="M62 196 q-16 -10 -20 -26" stroke="#4a3728" strokeWidth="5" fill="none" strokeLinecap="round" />
-      {/* sprout in the good ground */}
-      <path d="M330 282 q2 -14 10 -18" stroke="#8a5a1d" strokeWidth="3.5" fill="none" strokeLinecap="round" />
-      <ellipse cx="342" cy="260" rx="10" ry="6" fill="#b07a1e" transform="rotate(-24 342 260)" />
-      <ellipse cx="326" cy="266" rx="9" ry="5.5" fill="#c98f35" transform="rotate(18 326 266)" />
-    </svg>
-  );
-}
-
-function ShepherdIllustration() {
-  return (
-    <svg viewBox="0 0 400 300" role="img" aria-label="Illustrated evening hills, a shepherd carrying a small sheep on his shoulders, stars above" className="h-auto w-full">
-      {/* twilight sky */}
-      <rect width="400" height="300" fill="#fdf3dc" />
-      <circle cx="330" cy="70" r="60" fill="#ecc87e" opacity="0.3" />
-      {/* stars */}
-      {([
-        [52, 42], [120, 26], [196, 48], [268, 30], [90, 78],
-      ] as const).map(([x, y], i) => (
-        <path key={i} d={`M${x} ${y - 5} L${x + 1.6} ${y - 1.6} L${x + 5} ${y} L${x + 1.6} ${y + 1.6} L${x} ${y + 5} L${x - 1.6} ${y + 1.6} L${x - 5} ${y} L${x - 1.6} ${y - 1.6} Z`} fill="#d9a441" />
-      ))}
-      {/* far hills */}
-      <path d="M0 220 Q 120 150 260 205 T 400 195 L400 300 L0 300 Z" fill="#e3c98f" />
-      <path d="M0 255 Q 150 200 320 250 T 400 265 L400 300 L0 300 Z" fill="#d9b877" />
-      {/* flock dots waiting on the hill */}
-      {[
-        [92, 262], [110, 268], [128, 262], [146, 270], [162, 264],
-      ].map(([x, y], i) => (
-        <ellipse key={i} cx={x} cy={y} rx="6" ry="4" fill="#fffdf7" />
-      ))}
-      {/* shepherd carrying the sheep */}
-      <circle cx="250" cy="176" r="12" fill="#3c342b" />
-      <path d="M228 228 q0 -30 22 -30 q22 0 22 30 l-3 58 q-3 14 -19 14 q-16 0 -19 -14 Z" fill="#4a3728" />
-      {/* staff */}
-      <path d="M247 190 q-6 34 2 74" stroke="#8a5a1d" strokeWidth="4" fill="none" strokeLinecap="round" />
-      <path d="M249 262 l8 -14" stroke="#8a5a1d" strokeWidth="4" strokeLinecap="round" />
-      {/* the sheep on his shoulders */}
-      <ellipse cx="266" cy="146" rx="26" ry="16" fill="#fffdf7" />
-      <circle cx="292" cy="142" r="8" fill="#fffdf7" />
-      <ellipse cx="294" cy="134" rx="3.4" ry="2" fill="#e8d5a6" />
-      <circle cx="295" cy="142" r="1.6" fill="#3c342b" />
-      <path d="M248 146 v10 M260 146 v10 M272 146 v10 M284 146 v10" stroke="#fffdf7" strokeWidth="3" strokeLinecap="round" />
-      <path d="M260 152 l4 8 M274 152 l-4 8 M282 154 l3 7" stroke="#fffdf7" strokeWidth="3" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function MustardIllustration() {
-  return (
-    <svg viewBox="0 0 400 300" role="img" aria-label="Illustrated garden with a tiny seed on a mound and a great sheltering tree with birds" className="h-auto w-full">
-      {/* sky */}
-      <rect width="400" height="300" fill="#fdf6e3" />
-      <circle cx="86" cy="56" r="44" fill="#ecc87e" opacity="0.4" />
-      <circle cx="86" cy="56" r="28" fill="#d9a441" opacity="0.85" />
-      {/* ground */}
-      <path d="M0 240 Q 150 200 400 235 L400 300 L0 300 Z" fill="#e8d5a6" />
-      <path d="M0 268 Q 150 236 400 266 L400 300 L0 300 Z" fill="#dfc488" />
-      {/* tree trunk */}
-      <path d="M215 300 q-4 -84 6 -138 l34 -14 q-16 70 -8 152 Z" fill="#4a3728" />
-      <path d="M204 232 q30 -8 48 10" stroke="#8a5a1d" strokeWidth="5" fill="none" strokeLinecap="round" />
-      {/* canopy layers */}
-      <circle cx="210" cy="118" r="58" fill="#e3c98f" />
-      <circle cx="262" cy="140" r="46" fill="#d9b877" />
-      <circle cx="174" cy="150" r="40" fill="#dcc489" />
-      <circle cx="226" cy="92" r="34" fill="#ecc87e" opacity="0.85" />
-      {/* leaf dabs */}
-      {[
-        [180, 110], [240, 120], [196, 152], [258, 162], [222, 70],
-      ].map(([x, y], i) => (
-        <ellipse key={i} cx={x} cy={y} rx="12" ry="7" fill="#c99b3f" opacity="0.7" transform={`rotate(-18 ${x} ${y})`} />
-      ))}
-      {/* tiny seed on its mound */}
-      <ellipse cx="318" cy="246" rx="16" ry="7" fill="#fffdf7" />
-      <ellipse cx="318" cy="240" rx="5" ry="3" fill="#8a5a1d" />
-      <path d="M330 232 q10 -8 12 -18 M336 228 q8 -14 6 -24" stroke="#ecc87e" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-      {/* two birds in the branches */}
-      <path d="M258 44 q6 -8 12 0 q-6 2 -12 0 M282 58 q6 -8 12 0 q-6 2 -12 0" stroke="#3c342b" strokeWidth="3" fill="none" strokeLinecap="round" />
-      <circle cx="270" cy="42" r="1.8" fill="#3c342b" />
-    </svg>
-  );
-}
-
-function SpreadIllustration({ kind }: { kind: Illustration }) {
-  if (kind === 'sower') return <SowerIllustration />;
-  if (kind === 'shepherd') return <ShepherdIllustration />;
-  return <MustardIllustration />;
-}
 
 /* ------------------------------------------------------------------ */
 /* Carousel                                                            */
@@ -255,9 +138,9 @@ export default function LookInsideCarousel() {
               Flip through <span className="text-[#b07a1e] italic">the first library</span>
             </h2>
             <p className="mt-4 text-base leading-relaxed text-[#5b4632] sm:text-lg">
-              Three preview templates from the forthcoming Illustrated Books line —
-              classic parables retold in our own words, drawn for little eyes and
-              big questions.
+              Three preview pages from the forthcoming Illustrated Books line —
+              classic parables retold in our own words, with page art from the
+              first Living Word Studios books.
             </p>
           </div>
           {/* Arrow controls (tab stops) */}
@@ -343,7 +226,8 @@ export default function LookInsideCarousel() {
           </div>
           <p className="text-xs leading-relaxed text-[#5b4632]/65">
             Previews of the forthcoming Illustrated Books line — original retellings
-            of the parables, crafted in-house at Living Word Studios.
+            of the parables, crafted in-house at Living Word Studios, with real
+            page art from the first books.
           </p>
         </div>
       </div>
@@ -352,7 +236,7 @@ export default function LookInsideCarousel() {
 }
 
 /* ------------------------------------------------------------------ */
-/* A single book-spread template: left page = illustration, right page */
+/* A single book-spread template: left page = real artwork, right page */
 /* = story text styled like a real book page (serif, drop cap, paper). */
 /* ------------------------------------------------------------------ */
 
@@ -372,9 +256,16 @@ function BookSpread({ slide, position }: { slide: Spread; position: number }) {
       </div>
 
       <div className="grid gap-1.5 sm:grid-cols-2 md:gap-2.5">
-        {/* Left page — illustration (hand-built SVG). */}
-        <div className="kk-carousel-page flex min-h-[260px] items-center justify-center rounded-[1.4rem] border border-[#e6d4a8] bg-gradient-to-br from-[#fdf6e3] via-[#fffdf7] to-[#f3e7c4] p-4 sm:min-h-[320px] sm:p-6 md:rounded-[1.75rem]">
-          <SpreadIllustration kind={slide.illustration} />
+        {/* Left page — real artwork from the first books. */}
+        <div className="kk-carousel-page flex min-h-[260px] items-center justify-center rounded-[1.4rem] border border-[#e6d4a8] bg-[linear-gradient(180deg,#fffdf7_0%,#f3e7c4_100%)] p-4 sm:min-h-[320px] sm:p-6 md:rounded-[1.75rem]">
+          <img
+            src={slide.image}
+            alt={slide.alt}
+            loading="lazy"
+            width={1024}
+            height={1024}
+            className="kk-carousel-art h-auto max-h-[420px] w-auto max-w-full rounded-xl border border-[#e6d4a8] object-contain shadow-[0_1px_0_rgba(176,122,30,0.08),0_8px_20px_-8px_rgba(176,122,30,0.25)]"
+          />
         </div>
 
         {/* Right page — the story, book-styled. */}
