@@ -60,30 +60,44 @@ export default function KidsKingdom() {
             </a>
           </div>
         </div>
-        {/* Illustrative book-stack visual — pure CSS, light palette. Sits left and
-            slightly high so it leans against the right-side text column. */}
-        <div aria-hidden="true" className="relative mx-auto mt-12 w-full max-w-sm lg:order-1 lg:col-span-4 lg:col-start-2 lg:-mt-10 lg:mx-0">
-          <div className="animate-slow-drift -rotate-2 rounded-[2rem] border border-[#d9a441]/40 bg-gradient-to-br from-[#fdf6e3] to-[#fffdf7] p-8 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)]">
-            <div className="rounded-2xl bg-gradient-to-br from-[#d9a441] to-[#b4552d] p-[3px]">
-              <div className="rounded-[14px] bg-[#fffdf7] p-6 text-center">
-                <p className="text-[11px] font-bold tracking-[0.3em] text-[#8a5a1d] uppercase">
-                  Kids Kingdom
-                </p>
-                <p className="font-display mt-2 text-2xl font-bold text-[#4a3728] italic">
-                  Parables for little hearts
-                </p>
-                <div className="mx-auto mt-5 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-[#ecc87e]/60 to-[#d9a441]/40">
-                  <span className="font-display text-4xl text-[#8a5a1d]">&#10022;</span>
-                </div>
-                <p className="mt-5 text-xs tracking-widest text-[#3c342b]/55 uppercase">
-                  Beautifully made books — coming soon
-                </p>
+        {/* Character moment — the owner's real Jesus & David artwork, framed
+            like matted prints. Sized so it never fights the CTA buttons. */}
+        <div className="relative mx-auto mt-12 w-full max-w-sm lg:order-1 lg:col-span-4 lg:col-start-2 lg:-mt-10 lg:mx-0">
+          <div className="flex items-start justify-center gap-3 sm:gap-4">
+            <figure className="card-sheen w-36 -rotate-2 rounded-[1.5rem] border border-[#e8d5a6] bg-[#fffdf7] p-2 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)] sm:w-40">
+              <div className="overflow-hidden rounded-[1.1rem] border border-[#e6d4a8] bg-white">
+                <img
+                  src="/assets/artwork/jesus.png"
+                  alt="Illustration of Jesus, character art from the first Living Word Studios books (preview)"
+                  loading="lazy"
+                  width={608}
+                  height={1088}
+                  className="h-auto w-full object-cover"
+                />
               </div>
-            </div>
+              <figcaption className="mt-2 pb-0.5 text-center text-[10px] font-bold tracking-[0.2em] text-[#8a5a1d] uppercase">
+                Jesus
+              </figcaption>
+            </figure>
+            <figure className="card-sheen mt-5 w-36 rotate-2 rounded-[1.5rem] border border-[#e8d5a6] bg-[#fffdf7] p-2 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)] sm:mt-7 sm:w-40">
+              <div className="overflow-hidden rounded-[1.1rem] border border-[#e6d4a8] bg-white">
+                <img
+                  src="/assets/artwork/david.png"
+                  alt="Illustration of David, character art from the first Living Word Studios books (preview)"
+                  loading="lazy"
+                  width={608}
+                  height={1088}
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+              <figcaption className="mt-2 pb-0.5 text-center text-[10px] font-bold tracking-[0.2em] text-[#8a5a1d] uppercase">
+                David
+              </figcaption>
+            </figure>
           </div>
-          <div className="absolute -right-3 -bottom-4 -z-0 hidden rounded-2xl border border-[#e8d5a6] bg-[#fffdf7] px-5 py-3 text-xs text-[#5b4632]/80 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_14px_30px_-14px_rgba(176,122,30,0.35)] sm:block">
-            For parents + kids
-          </div>
+          <p className="mt-4 text-center text-xs leading-relaxed text-[#5b4632]/70">
+            Character art from the first books — coloring pages coming soon
+          </p>
         </div>
       </div>
     </section>
