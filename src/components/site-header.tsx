@@ -3,11 +3,13 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import BrandMark from '@/components/brand-mark';
+import { SocialRow } from '@/components/social-icons';
 
 const NAV_LINKS = [
   { label: 'Bible Shorts', href: '/bible-shorts' },
   { label: 'Kids Kingdom', href: '/kids-kingdom' },
   { label: 'Books', href: '#books' },
+  { label: 'Journal', href: '/blog' },
   { label: 'Studio Goods', href: '/studio-goods' },
   { label: 'Community', href: '#community' },
 ];
@@ -74,6 +76,10 @@ export default function SiteHeader() {
             </Link>
           ))}
         </nav>
+        {/* Social icon placeholders — lg+ inline (between the nav and the CTA). */}
+        <div className="hidden items-center gap-3 lg:flex">
+          <SocialRow iconClass="h-4 w-4" />
+        </div>
         {/* Right group: CTA pill + hamburger toggle (below lg). */}
         <div className="relative z-10 ml-auto flex shrink-0 items-center gap-2 sm:gap-3 md:ml-0">
           <Link
@@ -136,6 +142,10 @@ export default function SiteHeader() {
                 {link.label}
               </Link>
             ))}
+            {/* Social icon placeholders — dropdown bottom row (below lg). */}
+            <div className="mt-2 flex items-center gap-4 border-t border-[#e8d5a6] px-3 pt-3">
+              <SocialRow iconClass="h-[18px] w-[18px]" />
+            </div>
           </div>
         </div>
       </div>

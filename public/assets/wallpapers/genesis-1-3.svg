@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920" role="img" aria-label="Let there be light.  — Genesis 1:3">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffdf7"/>
+      <stop offset="0.5" stop-color="#fdf6e3"/>
+      <stop offset="1" stop-color="#ecc87e"/>
+    </linearGradient>
+    <pattern id="grain" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+      <line x1="0" y1="0" x2="0" y2="12" stroke="#5a4632" stroke-width="1" opacity="0.03"/>
+    </pattern>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fffdf7" stop-opacity="0.75"/>
+      <stop offset="0.55" stop-color="#ecc87e" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#ecc87e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#bg)"/>
+  
+  <rect width="1080" height="1920" fill="url(#grain)"/>
+  <g transform="translate(483,1180) scale(2.5)" opacity="0.11" fill="none" stroke="#b07a1e">
+    <path d="M22 11 C14 15 9 21 11.5 27 C13.2 31.4 17.2 33.8 22 33.8" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M22 11 C30 15 35 21 32.5 27 C30.8 31.4 26.8 33.8 22 33.8" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M22 5 V39" stroke-width="2.6" stroke-linecap="round"/>
+  </g>
+  <text x="540" y="1410" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="bold" font-size="84" letter-spacing="4" fill="#2e2a26">Let there be light.</text>
+  <text x="540" y="1496" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="34" letter-spacing="7" fill="#2e2a26">Genesis 1:3</text>
+</svg>

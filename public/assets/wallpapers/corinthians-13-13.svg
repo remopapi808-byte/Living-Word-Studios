@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920" role="img" aria-label="Faith, hope, and love — but the greatest of these is love. — 1 Corinthians 13:13">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7e3c0"/>
+      <stop offset="0.5" stop-color="#e8b45c"/>
+      <stop offset="1" stop-color="#8a5a1d"/>
+    </linearGradient>
+    <pattern id="grain" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+      <line x1="0" y1="0" x2="0" y2="12" stroke="#fffdf7" stroke-width="1" opacity="0.045"/>
+    </pattern>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fffdf7" stop-opacity="0.75"/>
+      <stop offset="0.55" stop-color="#ecc87e" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#ecc87e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#bg)"/>
+  <circle cx="540" cy="1560" r="130" fill="url(#sun)"/><g stroke="#ecc87e" stroke-width="5" opacity="0.3" stroke-linecap="round"><line x1="540" y1="1560" x2="540" y2="1300"/><line transform="rotate(20 540 1560)" x1="540" y1="1560" x2="540" y2="1300"/><line transform="rotate(40 540 1560)" x1="540" y1="1560" x2="540" y2="1300"/><line transform="rotate(60 540 1560)" x1="540" y1="1560" x2="540" y2="1300"/><line transform="rotate(80 540 1560)" x1="540" y1="1560" x2="540" y2="1300"/><line transform="rotate(100 540 1560)" x1="540" y1="1560" x2="540" y2="1300"/><line transform="rotate(120 540 1560)" x1="540" y1="1560" x2="540" y2="1300"/><line transform="rotate(140 540 1560)" x1="540" y1="1560" x2="540" y2="1300"/><line transform="rotate(160 540 1560)" x1="540" y1="1560" x2="540" y2="1300"/></g>
+  <rect width="1080" height="1920" fill="url(#grain)"/>
+  <g transform="translate(483,1180) scale(2.5)" opacity="0.13" fill="none" stroke="#ecc87e">
+    <path d="M22 11 C14 15 9 21 11.5 27 C13.2 31.4 17.2 33.8 22 33.8" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M22 11 C30 15 35 21 32.5 27 C30.8 31.4 26.8 33.8 22 33.8" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M22 5 V39" stroke-width="2.6" stroke-linecap="round"/>
+  </g>
+  <text x="540" y="1385" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="bold" font-size="60" letter-spacing="4" fill="#fffdf7">Faith, hope, and love —</text>
+  <text x="540" y="1465" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="bold" font-size="60" letter-spacing="4" fill="#fffdf7">but the greatest of these is love.</text>
+  <text x="540" y="1545" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="34" letter-spacing="7" fill="#fffdf7">1 Corinthians 13:13</text>
+</svg>
