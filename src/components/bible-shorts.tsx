@@ -1,11 +1,12 @@
 import TrailerPlayer from '@/components/trailer-player';
+import VerticalPhoneFrame from '@/components/vertical-phone-frame';
 import WaitlistForm from '@/components/waitlist-form';
 
 /**
  * Bible Shorts — homepage section. Editorial 3-column arrangement: heavy-left
- * text column, trailer player + storybook waitlist form in the media column.
- * (The portrait phone-frame column from the spec's Module 4a is added by the
- * phase-2 continuation.)
+ * text column, trailer player + storybook waitlist form in the media column,
+ * and the portrait 9:16 phone-frame mockup (Module 4a) in the right column on
+ * desktop. Mobile order: text → trailer → form → phone frame.
  */
 export default function BibleShorts() {
   return (
@@ -35,6 +36,14 @@ export default function BibleShorts() {
               />
             </div>
           </div>
+          {/* 9:16 vertical video frame mockup — mobile placement, centered. */}
+          <div className="mx-auto mt-10 w-full max-w-[15rem] lg:hidden">
+            <VerticalPhoneFrame />
+          </div>
+        </div>
+        {/* 9:16 phone frame — desktop right column. */}
+        <div className="mt-10 lg:col-span-3 lg:col-start-11 lg:mt-16">
+          <VerticalPhoneFrame />
         </div>
       </div>
     </section>
