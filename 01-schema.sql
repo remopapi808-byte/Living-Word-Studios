@@ -61,10 +61,12 @@ CREATE TABLE "StorefrontEvent" (
     "productId" text,
     "createdAt" timestamp(3) without time zone NOT NULL
 );
-CREATE TABLE "WaitlistEntry" (
-    id text NOT NULL,
+CREATE TABLE waitlist_signups (
+    id bigserial PRIMARY KEY,
     email text NOT NULL,
-    "createdAt" timestamp(3) without time zone NOT NULL
+    name text,
+    source text,
+    created_at timestamptz NOT NULL DEFAULT now()
 );
 CREATE TABLE account (
     id text NOT NULL,
@@ -125,7 +127,6 @@ ALTER TABLE "CheckoutOrder" ALTER COLUMN status SET DEFAULT 'PENDING'::"Checkout
 ALTER TABLE "CheckoutOrder" ALTER COLUMN "createdAt" SET DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE "DigitalPurchase" ALTER COLUMN "acquiredAt" SET DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE "StorefrontEvent" ALTER COLUMN "createdAt" SET DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE "WaitlistEntry" ALTER COLUMN "createdAt" SET DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE contact_message ALTER COLUMN "createdAt" SET DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE "user" ALTER COLUMN role SET DEFAULT 'user'::text;
 ALTER TABLE "user" ALTER COLUMN banned SET DEFAULT false;
@@ -133,7 +134,6 @@ ALTER TABLE "Address" ADD CONSTRAINT "Address_pkey" PRIMARY KEY (id);
 ALTER TABLE "CheckoutOrder" ADD CONSTRAINT "CheckoutOrder_pkey" PRIMARY KEY (id);
 ALTER TABLE "DigitalPurchase" ADD CONSTRAINT "DigitalPurchase_pkey" PRIMARY KEY (id);
 ALTER TABLE "StorefrontEvent" ADD CONSTRAINT "StorefrontEvent_pkey" PRIMARY KEY (id);
-ALTER TABLE "WaitlistEntry" ADD CONSTRAINT "WaitlistEntry_pkey" PRIMARY KEY (id);
 ALTER TABLE account ADD CONSTRAINT account_pkey PRIMARY KEY (id);
 ALTER TABLE contact_message ADD CONSTRAINT contact_message_pkey PRIMARY KEY (id);
 ALTER TABLE session ADD CONSTRAINT session_pkey PRIMARY KEY (id);
@@ -146,6 +146,6 @@ CREATE INDEX "DigitalPurchase_userId_acquiredAt_idx" ON "DigitalPurchase" USING 
 CREATE UNIQUE INDEX "DigitalPurchase_userId_productId_key" ON "DigitalPurchase" USING btree ("userId", "productId");
 CREATE INDEX "StorefrontEvent_eventName_createdAt_idx" ON "StorefrontEvent" USING btree ("eventName", "createdAt");
 CREATE INDEX "StorefrontEvent_source_createdAt_idx" ON "StorefrontEvent" USING btree (source, "createdAt");
-CREATE UNIQUE INDEX "WaitlistEntry_email_key" ON "WaitlistEntry" USING btree (email);
+CREATE UNIQUE INDEX waitlist_signups_email_key ON waitlist_signups USING btree (email);
 CREATE UNIQUE INDEX session_token_key ON session USING btree (token);
 CREATE UNIQUE INDEX user_email_key ON "user" USING btree (email);

@@ -1,9 +1,11 @@
 import Link from 'next/link';
+import { SocialRow } from '@/components/social-icons';
 
 const SECTION_LINKS = [
   { label: 'Bible Shorts', href: '/bible-shorts' },
   { label: 'Kids Kingdom', href: '#kids-kingdom' },
   { label: 'Illustrated Books', href: '#books' },
+  { label: 'Journal', href: '/blog' },
   { label: 'Studio Goods', href: '#studio-goods' },
   { label: 'Community', href: '#community' },
 ];
@@ -33,6 +35,12 @@ export default function SiteFooter() {
             </Link>
           ))}
         </nav>
+      </div>
+      {/* Social icon placeholders — centered band above the copyright bar. */}
+      <div className="border-t border-[#4a3728]/10 py-5">
+        <div className="flex items-center justify-center gap-5">
+          <SocialRow iconClass="h-5 w-5" />
+        </div>
       </div>
       <div className="border-t border-[#4a3728]/10">
         <p className="mx-auto max-w-6xl px-4 py-5 text-center text-xs text-[#5b4632]/60 sm:px-6">

@@ -73,6 +73,27 @@ body {
   );
 }
 
+/* Trailer player poster — warm Genesis-1 dusk. NEVER dark-black: cream at the
+   top (charcoal-safe) deepening through gold-soft into autumn/deep-gold. */
+.trailer-poster {
+  background:
+    radial-gradient(130% 90% at 50% 118%, rgba(255, 253, 247, 0.95) 0%, transparent 45%),
+    radial-gradient(55% 45% at 75% 28%, rgba(236, 200, 126, 0.65), transparent 70%),
+    radial-gradient(45% 40% at 18% 70%, rgba(176, 122, 30, 0.35), transparent 70%),
+    linear-gradient(168deg, #fffdf7 0%, #fdf6e3 24%, #f3ddab 48%, #ecc87e 70%, #c98d2e 88%, #b07a1e 100%);
+}
+/* Gold light rays radiating from the horizon (bottom-center) — low opacity,
+   masked into a soft cone so the top zone stays calm for charcoal type. */
+.trailer-rays {
+  background: repeating-conic-gradient(
+    from 0deg at 50% 112%,
+    rgba(255, 253, 247, 0) 0deg 7deg,
+    rgba(255, 253, 247, 0.18) 7deg 11deg
+  );
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.9), transparent 75%);
+          mask-image: linear-gradient(to top, rgba(0,0,0,0.9), transparent 75%);
+}
+
 @keyframes slow-drift {
   0%,
   100% {
@@ -90,9 +111,9 @@ body {
 .shop-toolbar {
   top: 4rem;
 }
-/* Bible Shorts — static Coming Soon teaser: nothing to clamp here (no video),
-   the banner is pure light-palette markup. Landscape compaction for the
-   teaser lives in the short-viewport block below. */
+/* Trailer player placeholder + hero waitlist card: short-viewport safety. The
+   trailer chrome and microcopy chip are decorative — hidden on phone
+   landscape so the play button stays visible without scrolling. */
 
 /*
  * Mobile landscape (short viewports): keep the fixed header compact and
@@ -180,29 +201,30 @@ body {
   .kk-hero-visual {
     display: none;
   }
-  /* Bible Shorts Coming Soon teaser (short-viewport safety): compact the
-     banner padding and type so the message + gold CTA stay visible on
-     phone landscape (~390px tall) without scrolling. */
-  .bs-teaser-inner {
+  /* Bible Shorts trailer player (short-viewport safety): chrome + microcopy
+     chip are decorative — hidden on phone landscape, play button stays. */
+  .bs-trailer-frame {
+    border-radius: 1.25rem;
+  }
+  .bs-trailer-title {
+    font-size: 1.5rem;
+    line-height: 1.1;
+  }
+  .bs-trailer-play {
+    height: 3rem;
+    width: 3rem;
+  }
+  .bs-trailer-chrome {
+    display: none;
+  }
+  .bs-trailer-inner {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
   }
-  .bs-teaser-title {
-    font-size: 1.5rem;
-    line-height: 1.15;
-    margin-top: 0.4rem;
-  }
-  .bs-teaser-copy {
-    font-size: 0.92rem;
-    line-height: 1.45;
-    margin-top: 0.45rem;
-    max-width: 34rem;
-  }
-  .bs-teaser-cta {
-    margin-top: 0.8rem;
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
-    font-size: 0.9rem;
+  .hero-waitlist-card {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-top: 0;
   }
   /* Studio Goods drop grid (short-viewport safety): compact the section
      padding and tile height so cards + CTAs stay visible on phone

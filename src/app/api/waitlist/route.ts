@@ -1,10 +1,12 @@
 import { NextResponse } from 'next/server';
-import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 import { prisma } from '@/lib/db';
 
 const BodySchema = z.object({
   email: z.string().trim().toLowerCase().email('Please enter a valid email address.'),
+  // Backward compatible: existing CommunityClose posts `{ email }` only and
+  // keeps working (source optional). New inline forms tag their placement.
+  source: z.enum(['community-close', 'kids-kingdom', 'inner-circle', 'storybook']).optional(),
 });
 
 // Light in-memory rate limit: 5 requests / minute / IP. Fine for launch scale.
@@ -56,7 +58,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: true, alreadyJoined: true });
     }
     await prisma.waitlistEntry.create({
-      data: { id: randomUUID(), email: parsed.data.email },
+      data: { email: parsed.data.email, source: parsed.data.source ?? null },
     });
     return NextResponse.json({ ok: true });
   } catch (err) {

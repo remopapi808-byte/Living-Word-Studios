@@ -50,6 +50,27 @@ export default function IllustratedBooks() {
             </article>
           ))}
         </div>
+        <div className="mt-10 flex justify-center">
+          <a
+            href="/assets/coloring-page-parable.pdf"
+            download
+            aria-label="Download free printable coloring page (PDF)"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-[#b07a1e]/50 bg-transparent px-6 py-3 text-sm font-semibold text-[#8a5a1d] transition-colors hover:border-[#d9a441] hover:bg-[#d9a441]/10"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              className="h-4 w-4"
+              aria-hidden="true"
+            >
+              <path d="M12 4v10m0 0-4-4m4 4 4-4 M4 19h16" />
+            </svg>
+            Download Free Coloring Page Parable (PDF)
+          </a>
+        </div>
         <p className="mt-12 text-sm font-semibold tracking-wide text-[#8a5a1d] uppercase md:mt-16">
           First titles — coming soon
         </p>

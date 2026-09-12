@@ -74,11 +74,13 @@ model StorefrontEvent {
 }
 
 model WaitlistEntry {
-  id        String   @id
+  id        BigInt   @id @default(autoincrement())
   email     String   @unique
-  createdAt DateTime @default(now())
+  name      String?
+  source    String?
+  createdAt DateTime @default(now()) @map("created_at")
 
-  @@map("WaitlistEntry")
+  @@map("waitlist_signups")
 }
 
 model Account {
