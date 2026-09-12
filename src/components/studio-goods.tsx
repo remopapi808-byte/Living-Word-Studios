@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 const PRODUCTS = [
   {
     name: 'Hoodies',
@@ -64,12 +62,12 @@ export default function StudioGoods() {
             </article>
           ))}
         </div>
-        <Link
-          href="/studio-goods"
+        <a
+          href="#community"
           className="mt-12 inline-flex items-center justify-center rounded-full border border-[#3c342b]/30 px-6 py-3 text-sm font-semibold text-[#3c342b] transition-colors hover:border-[#b07a1e] hover:text-[#8a5a1d]"
         >
           Be first to shop the drop
-        </Link>
+        </a>
       </div>
     </section>
   );

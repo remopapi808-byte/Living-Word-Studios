@@ -7,6 +7,7 @@ const BodySchema = z.object({
   // Backward compatible: existing CommunityClose posts `{ email }` only and
   // keeps working (source optional). New inline forms tag their placement.
   source: z.enum(['community-close', 'kids-kingdom', 'inner-circle', 'storybook']).optional(),
+  name: z.string().trim().optional(),
 });
 
 // Light in-memory rate limit: 5 requests / minute / IP. Fine for launch scale.
@@ -50,6 +51,11 @@ export async function POST(req: Request) {
     );
   }
 
+  // Platform parity: a missing source defaults to 'kids-kingdom' (the Neon
+  // column default); an explicitly invalid source fails validation above.
+  const source = parsed.data.source ?? 'kids-kingdom';
+  const name = parsed.data.name && parsed.data.name.length > 0 ? parsed.data.name : null;
+
   try {
     const existing = await prisma.waitlistEntry.findUnique({
       where: { email: parsed.data.email },
@@ -57,9 +63,18 @@ export async function POST(req: Request) {
     if (existing) {
       return NextResponse.json({ ok: true, alreadyJoined: true });
     }
-    await prisma.waitlistEntry.create({
-      data: { email: parsed.data.email, source: parsed.data.source ?? null },
-    });
+    try {
+      await prisma.waitlistEntry.create({
+        data: { email: parsed.data.email, name, source },
+      });
+    } catch (err) {
+      // Race-window duplicate: the unique email index wins; report as
+      // already-joined, mirroring the platform's ON CONFLICT DO NOTHING.
+      if (typeof err === 'object' && err !== null && 'code' in err && (err as { code?: unknown }).code === 'P2002') {
+        return NextResponse.json({ ok: true, alreadyJoined: true });
+      }
+      throw err;
+    }
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error('waitlist signup failed', err);
