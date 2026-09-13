@@ -1,12 +1,11 @@
-import TrailerPlayer from '@/components/trailer-player';
-import VerticalPhoneFrame from '@/components/vertical-phone-frame';
+import VimeoTrailer from '@/components/vimeo-trailer';
 import WaitlistForm from '@/components/waitlist-form';
 
 /**
- * Bible Shorts — homepage section. Editorial 3-column arrangement: heavy-left
- * text column, trailer player + storybook waitlist form in the media column,
- * and the portrait 9:16 phone-frame mockup (Module 4a) in the right column on
- * desktop. Mobile order: text → trailer → form → phone frame.
+ * Bible Shorts — homepage section. Heavy-left text column and a media column
+ * holding the live 9:16 Vimeo trailer (SHEPHERDS & KINGS) with the storybook
+ * waitlist form right below it. One live player — the single honest way to
+ * show the series — scaled down to phone-frame width on mobile.
  */
 export default function BibleShorts() {
   return (
@@ -14,7 +13,7 @@ export default function BibleShorts() {
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:grid lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-4">
           <p className="text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
-            Cinematic series — coming soon
+            Cinematic series — trailer now streaming
           </p>
           <h2 className="font-display mt-3 text-3xl font-bold text-[#2e2a26] sm:text-5xl">
             Bible Shorts
@@ -25,7 +24,7 @@ export default function BibleShorts() {
           </p>
         </div>
         <div className="mt-10 lg:col-span-5 lg:col-start-6 lg:mt-16">
-          <TrailerPlayer />
+          <VimeoTrailer maxWidthClass="max-w-xs sm:max-w-sm" />
           <div id="trailer-waitlist" className="mt-6 scroll-mt-24">
             <div className="rounded-[1.75rem] border border-[#d9a441]/30 bg-[#fffdf7] px-6 py-8 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)]">
               <WaitlistForm
@@ -36,14 +35,6 @@ export default function BibleShorts() {
               />
             </div>
           </div>
-          {/* 9:16 vertical video frame mockup — mobile placement, centered. */}
-          <div className="mx-auto mt-10 w-full max-w-[15rem] lg:hidden">
-            <VerticalPhoneFrame />
-          </div>
-        </div>
-        {/* 9:16 phone frame — desktop right column. */}
-        <div className="mt-10 lg:col-span-3 lg:col-start-11 lg:mt-16">
-          <VerticalPhoneFrame />
         </div>
       </div>
     </section>

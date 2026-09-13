@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import AudioDramaPlayer from '@/components/audio-drama-player';
+import VimeoTrailer from '@/components/vimeo-trailer';
 import CommunityClose from '@/components/community-close';
 import SiteFooter from '@/components/site-footer';
 import SiteHeader from '@/components/site-header';
@@ -109,6 +110,32 @@ export default function BibleShortsPage() {
                   Now featured · Audio-drama
                 </p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ------------------------------------------------------------
+            Trailer — the real SHEPHERDS & KINGS concept trailer (Vimeo
+            cloud embed, live). Parchment band above the dark listening-
+            sample panel; centered 9:16 player in the phone-frame family.
+            ------------------------------------------------------------ */}
+        <section className="scroll-mt-24 border-t border-[#4a3728]/10 bg-[#f7f0e1]">
+          <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
+                Bible Shorts &middot; Trailer
+              </p>
+              <h2 className="font-display mt-3 text-3xl font-bold text-[#2e2a26] sm:text-5xl">
+                SHEPHERDS &amp; KINGS — the concept trailer
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-[#3c342b]/75 sm:text-lg">
+                This is the real trailer — the first Bible Short, cut at about
+                sixty seconds and filmed for vertical screens. Press play; it
+                was made for the phone in your pocket.
+              </p>
+            </div>
+            <div className="mt-10">
+              <VimeoTrailer maxWidthClass="max-w-xs sm:max-w-sm" />
             </div>
           </div>
         </section>
