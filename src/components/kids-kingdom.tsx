@@ -66,7 +66,7 @@ export default function KidsKingdom() {
             <figure className="card-sheen w-36 -rotate-2 rounded-[1.5rem] border border-[#e8d5a6] bg-[#fffdf7] p-2 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)] sm:w-40">
               <div className="overflow-hidden rounded-[1.1rem] border border-[#e6d4a8] bg-white">
                 <img
-                  src="/assets/artwork/jesus.png"
+                  src="/assets/artwork/jesus-v2.png"
                   alt="Illustration of Jesus, character art from the first Living Word Studios books (preview)"
                   loading="lazy"
                   width={608}
