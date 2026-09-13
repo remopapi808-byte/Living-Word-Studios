@@ -9,7 +9,7 @@ export default function KidsKingdom() {
       <div className="relative mx-auto max-w-6xl items-center gap-10 px-4 py-24 sm:px-6 sm:py-32 lg:grid lg:grid-cols-12">
         <div className="lg:order-2 lg:col-span-6 lg:col-start-7">
           <p className="text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
-            For families — coming soon
+            For families — now open
           </p>
           <h2 className="font-display mt-3 text-3xl font-bold text-[#2e2a26] sm:text-5xl">
             Kids Kingdom
@@ -95,7 +95,7 @@ export default function KidsKingdom() {
             </figure>
           </div>
           <p className="mt-4 text-center text-xs leading-relaxed text-[#5b4632]/70">
-            Character art from the first books — coloring pages coming soon
+            Character art from the first books — now free to download
           </p>
         </div>
       </div>
