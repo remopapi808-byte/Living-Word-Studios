@@ -86,6 +86,17 @@ const STORYBOOK_SHEETS = [
   },
 ];
 
+/* The owner's six-page David coloring book (numbered line art, 1264×1264) —
+   downloadable one page at a time from the Kids Kingdom coloring gallery. */
+const DAVID_BOOK_PAGES = [
+  { src: '/assets/coloring-pages/david-book-1.png', n: 1 },
+  { src: '/assets/coloring-pages/david-book-2.png', n: 2 },
+  { src: '/assets/coloring-pages/david-book-3.png', n: 3 },
+  { src: '/assets/coloring-pages/david-book-4.png', n: 4 },
+  { src: '/assets/coloring-pages/david-book-5.png', n: 5 },
+  { src: '/assets/coloring-pages/david-book-6.png', n: 6 },
+];
+
 export default function KidsKingdomPage() {
   return (
     <>
@@ -237,6 +248,50 @@ export default function KidsKingdomPage() {
                   </figure>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* David Coloring Book — six numbered pages from the owner's book,
+            printable/downloadable one page at a time. */}
+        <section
+          id="david-coloring-book"
+          className="kk-section scroll-mt-24 border-b border-[#4a3728]/10"
+        >
+          <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
+                For families &middot; free
+              </p>
+              <h2 className="font-display mt-3 text-3xl font-bold text-[#4a3728] sm:text-5xl">
+                The David Coloring Book
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-[#5b4632] sm:text-lg">
+                Six numbered pages from the David coloring book &mdash; print, color, and share.
+              </p>
+            </div>
+            <div className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-6">
+              {DAVID_BOOK_PAGES.map((page) => (
+                <a
+                  key={page.src}
+                  href={page.src}
+                  download
+                  aria-label={`Download David coloring book page ${page.n}`}
+                  className="card-sheen block overflow-hidden rounded-2xl border border-[#e8d5a6] bg-[#fffdf7] p-1.5 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)] transition-transform hover:-translate-y-0.5"
+                >
+                  <img
+                    src={page.src}
+                    alt={`David coloring book — page ${page.n}`}
+                    loading="lazy"
+                    width={1264}
+                    height={1264}
+                    className="h-auto w-full rounded-xl object-contain"
+                  />
+                  <span className="block px-0.5 pt-2 pb-1 text-center text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
+                    Page {page.n}
+                  </span>
+                </a>
+              ))}
             </div>
           </div>
         </section>
