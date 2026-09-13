@@ -44,6 +44,48 @@ const PARENT_PROMISES = [
   'Faith for the whole family, from the littlest heart to yours',
 ];
 
+/* The owner's nine storybook coloring sheets (B&W line art from the first
+   titles) — shown as a compact thumbnail strip beneath the Jesus & David
+   gallery. Each file lives in public/assets/coloring-pages/. */
+const STORYBOOK_SHEETS = [
+  {
+    src: '/assets/coloring-pages/page-my-first-book-of-jesus-and-the-gospel.png',
+    title: 'My First Book of Jesus & the Gospel',
+  },
+  {
+    src: '/assets/coloring-pages/page-meet-jesus.png',
+    title: 'Meet Jesus!',
+  },
+  {
+    src: '/assets/coloring-pages/page-let-the-children-come.png',
+    title: 'Let the Children Come',
+  },
+  {
+    src: '/assets/coloring-pages/page-peace-be-still.png',
+    title: 'Peace! Be Still!',
+  },
+  {
+    src: '/assets/coloring-pages/page-jesus-calls-the-fishermen.png',
+    title: 'Jesus Calls the Fishermen',
+  },
+  {
+    src: '/assets/coloring-pages/page-dont-be-afraid.png',
+    title: 'Don\u2019t Be Afraid',
+  },
+  {
+    src: '/assets/coloring-pages/page-the-greatest-love.png',
+    title: 'The Greatest Love',
+  },
+  {
+    src: '/assets/coloring-pages/page-he-is-alive.png',
+    title: 'He Is Alive!',
+  },
+  {
+    src: '/assets/coloring-pages/page-shine-your-light.png',
+    title: 'Shine Your Light!',
+  },
+];
+
 export default function KidsKingdomPage() {
   return (
     <>
@@ -111,9 +153,94 @@ export default function KidsKingdomPage() {
           </div>
         </section>
 
-        {/* Look Inside — Illustrated Books preview gallery (the family-library
-            feature) with the parent waitlist immediately beneath it. */}
+        {/* Look Inside — Illustrated Books preview gallery (the family-library feature). */}
         <LookInsideCarousel />
+
+        {/* Free coloring pages — the owner's original Jesus & David character
+            outlines plus the nine storybook sheets, framed as a parchment
+            gallery. The DB-linked download capture sits directly beneath. */}
+        <section
+          id="coloring-pages"
+          className="kk-section scroll-mt-24 border-b border-[#4a3728]/10"
+        >
+          <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
+                Free coloring pages &middot; for families
+              </p>
+              <h2 className="font-display mt-3 text-3xl font-bold text-[#4a3728] sm:text-5xl">
+                Original coloring sheets from the first books
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-[#5b4632] sm:text-lg">
+                The very first Living Word Studios character outlines &mdash; drawn
+                for little hands and big imaginations. Print them, frame them, fill
+                them with color.
+              </p>
+            </div>
+
+            {/* The two original character sheets — an elegant framed pair. */}
+            <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
+              <figure className="card-sheen rounded-[2rem] border border-[#e8d5a6] bg-[#fffdf7] p-4 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)] sm:-rotate-1">
+                <div className="overflow-hidden rounded-[1.5rem] border border-[#e6d4a8] bg-white">
+                  <img
+                    src="/assets/coloring-pages/jesus.png"
+                    alt="Original Jesus coloring sheet — character outline from the first Living Word Studios books"
+                    loading="lazy"
+                    width={608}
+                    height={1088}
+                    className="h-auto w-full object-contain"
+                  />
+                </div>
+                <figcaption className="mt-3 pb-1 text-center text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
+                  Jesus
+                </figcaption>
+              </figure>
+              <figure className="card-sheen rounded-[2rem] border border-[#e8d5a6] bg-[#fffdf7] p-4 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)] sm:mt-6 sm:rotate-1">
+                <div className="overflow-hidden rounded-[1.5rem] border border-[#e6d4a8] bg-white">
+                  <img
+                    src="/assets/coloring-pages/david.png"
+                    alt="Original David coloring sheet — character outline from the first Living Word Studios books"
+                    loading="lazy"
+                    width={608}
+                    height={1088}
+                    className="h-auto w-full object-contain"
+                  />
+                </div>
+                <figcaption className="mt-3 pb-1 text-center text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
+                  David
+                </figcaption>
+              </figure>
+            </div>
+
+            {/* Storybook sheets — compact responsive thumbnail strip. */}
+            <div className="mx-auto mt-14 max-w-5xl">
+              <p className="text-center text-xs font-bold tracking-[0.22em] text-[#8a5a1d] uppercase">
+                Storybook coloring sheets &middot; included in your free download pack
+              </p>
+              <div className="mt-5 grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4 lg:grid-cols-9">
+                {STORYBOOK_SHEETS.map((sheet) => (
+                  <figure
+                    key={sheet.src}
+                    className="card-sheen overflow-hidden rounded-2xl border border-[#e8d5a6] bg-[#fffdf7] p-1.5 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)]"
+                  >
+                    <img
+                      src={sheet.src}
+                      alt={`${sheet.title} — storybook coloring sheet from the first Living Word Studios books`}
+                      loading="lazy"
+                      width={1024}
+                      height={1024}
+                      className="h-auto w-full rounded-xl object-contain"
+                    />
+                    <figcaption className="hidden truncate px-0.5 pt-1.5 pb-0.5 text-center text-[9px] leading-tight font-semibold tracking-wide text-[#8a5a1d] sm:block">
+                      {sheet.title}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <ParentWaitlist />
 
         {/* Feature cards — staggered: text heavy-left, cards stepping down */}

@@ -101,9 +101,7 @@ export default function ParentWaitlist() {
                 Join the Parent Waitlist
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-[#3c342b]/75 sm:text-lg">
-                Be first to know when Look Inside chapters ship — previews, release
-                dates, and gentle reading guides for little hearts. No noise, just
-                the good news.
+                Enter your email to receive high-resolution, printer-ready download links for these original David & Jesus sheets straight to your inbox.
               </p>
 
               {settled ? (
