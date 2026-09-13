@@ -183,7 +183,7 @@ export default function KidsKingdomPage() {
               <figure className="card-sheen rounded-[2rem] border border-[#e8d5a6] bg-[#fffdf7] p-4 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)] sm:-rotate-1">
                 <div className="overflow-hidden rounded-[1.5rem] border border-[#e6d4a8] bg-white">
                   <img
-                    src="/assets/coloring-pages/jesus.png"
+                    src="/assets/coloring-pages/jesus-v2.png"
                     alt="Original Jesus coloring sheet — character outline from the first Living Word Studios books"
                     loading="lazy"
                     width={608}
