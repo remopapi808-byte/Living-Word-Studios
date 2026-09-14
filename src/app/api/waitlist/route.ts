@@ -6,7 +6,7 @@ const BodySchema = z.object({
   email: z.string().trim().toLowerCase().email('Please enter a valid email address.'),
   // Backward compatible: existing CommunityClose posts `{ email }` only and
   // keeps working (source optional). New inline forms tag their placement.
-  source: z.enum(['community-close', 'kids-kingdom', 'inner-circle', 'storybook']).optional(),
+  source: z.enum(['community-close', 'kids-kingdom', 'inner-circle', 'storybook', 'bible-shorts']).optional(),
   name: z.string().trim().optional(),
 });
 

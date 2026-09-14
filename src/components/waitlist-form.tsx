@@ -5,7 +5,7 @@ type Status = 'idle' | 'loading' | 'done' | 'already' | 'error';
 
 type WaitlistFormProps = {
   /** Persists to the Neon waitlist DB (source column). */
-  source: 'inner-circle' | 'storybook';
+  source: 'inner-circle' | 'storybook' | 'bible-shorts';
   /** Prefix for the input id, e.g. 'hero' → id="hero-email". */
   idPrefix: string;
   /** Short action text for the submit button. */

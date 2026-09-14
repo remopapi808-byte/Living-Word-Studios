@@ -2,26 +2,91 @@
 
 import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
+import {
+  MASTER_RUNTIME_LABEL,
+  MASTER_RUNTIME_SECONDS,
+} from '@/data/master-production-script';
 
 /**
  * LWS/001 — "In the Beginning" audio-drama streaming sample player.
  *
- * The centerpiece of the Bible Shorts Media Room. Plain HTML5 <audio> driven
+ * The centerpiece of the Bible Shorts Audio Theater. Plain HTML5 <audio> driven
  * (React ref + state only, no dependencies, no lucide — inline SVGs).
  *
  * - Play/pause with clear state (icon swap, aria-pressed/aria-label).
  * - Seekable scrubber (native <input type="range">, click + drag + keyboard),
  *   elapsed / total time shown in a tabular monospace readout.
+ * - Two-part readout: the REAL placeholder-track position on the left, and the
+ *   owner's master-script run time ("Master script runtime: 0:00 / 6:00") on
+ *   the right — the 6:00 is the LWS/001 chapter runtime, not the sample.
  * - Buffering and error states handled gracefully — a failed load shows an
  *   honest message with a retry, never a broken control.
+ * - `variant="dark"` is the original charcoal deck; `variant="light"` is the
+ *   parchment/cream + gold Audio Theater deck (the page's flag-ship section,
+ *   no dark-ink surfaces anywhere).
  * - The track is a PUBLIC DEMO MP3 standing in for the pre-production
- *   narration cut. It is labelled "pre-production audio sample" everywhere
- *   so the honesty requirement holds. Verified via curl -I on 2026-09-10:
- *   HTTP/2 200, content-type audio/mpeg, accept-ranges bytes (seekable),
- *   ~8.9 MB (streams progressively, no download needed).
+ *   narration cut. It is labelled as a placeholder everywhere so the honesty
+ *   requirement holds. Verified via curl -I on 2026-09-10: HTTP/2 200,
+ *   content-type audio/mpeg, accept-ranges bytes (seekable), ~8.9 MB.
+ *
+ * The <audio> element is server-rendered with preload="auto", so the native
+ * load can fail BEFORE React hydrates and attaches onError. A failure in that
+ * pre-hydration window would silently leave the player stuck looking ready —
+ * see the ref-based listener in useEffect below.
  */
 
 const AUDIO_SRC = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+
+type Variant = 'dark' | 'light';
+
+type Theme = {
+  shell: string;
+  headerLabel: string;
+  title: string;
+  subtitle: string;
+  pill: string;
+  time: string;
+  timeMuted: string;
+  scrubber: string;
+  masterValue: string;
+  status: string;
+  errorPanel: string;
+  errorTitle: string;
+  errorBody: string;
+};
+
+const THEMES: Record<Variant, Theme> = {
+  dark: {
+    shell: 'border-[#ecc87e]/25 bg-[#3c342b] shadow-[0_2px_6px_rgba(0,0,0,0.2),0_16px_40px_-12px_rgba(0,0,0,0.45)]',
+    headerLabel: 'text-[#ecc87e]',
+    title: 'text-[#fdf6e3]',
+    subtitle: 'text-[#fdf6e3]/60',
+    pill: 'border-[#ecc87e]/40 bg-[#ecc87e]/10 text-[#ecc87e]',
+    time: 'text-[#fdf6e3]/75',
+    timeMuted: 'text-[#fdf6e3]/45',
+    scrubber: 'scrubber',
+    masterValue: 'text-[#ecc87e]',
+    status: 'text-[#fdf6e3]/55',
+    errorPanel: 'border-[#b4552d]/40 bg-[#2e2a26]',
+    errorTitle: 'text-[#fdf6e3]',
+    errorBody: 'text-[#fdf6e3]/70',
+  },
+  light: {
+    shell: 'border-[#e8d5a6] bg-[#fffdf7] shadow-[0_2px_6px_rgba(176,122,30,0.10),0_16px_40px_-12px_rgba(176,122,30,0.28),0_32px_80px_-24px_rgba(217,164,65,0.18)]',
+    headerLabel: 'text-[#8a5a1d]',
+    title: 'text-[#2e2a26]',
+    subtitle: 'text-[#3c342b]/60',
+    pill: 'border-[#d9a441]/50 bg-[#ecc87e]/20 text-[#8a5a1d]',
+    time: 'text-[#3c342b]/80',
+    timeMuted: 'text-[#3c342b]/50',
+    scrubber: 'scrubber scrubber--light',
+    masterValue: 'text-[#8a5a1d]',
+    status: 'text-[#3c342b]/60',
+    errorPanel: 'border-[#b4552d]/40 bg-[#f7f0e1]',
+    errorTitle: 'text-[#2e2a26]',
+    errorBody: 'text-[#3c342b]/75',
+  },
+};
 
 function formatTime(seconds: number): string {
   if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
@@ -52,7 +117,11 @@ function PauseIcon() {
   );
 }
 
-export default function AudioDramaPlayer() {
+export default function AudioDramaPlayer({
+  variant = 'dark',
+}: {
+  variant?: Variant;
+}) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const scrubbingRef = useRef(false);
   const scrubTargetRef = useRef(0);
@@ -63,10 +132,15 @@ export default function AudioDramaPlayer() {
   const [duration, setDuration] = useState(0);
   const [hasError, setHasError] = useState(false);
 
+  const t = THEMES[variant];
+
   const percent = duration > 0 ? (currentTime / duration) * 100 : 0;
   const scrubFill = {
     '--fill': `${Math.min(100, Math.max(0, percent)).toFixed(2)}%`,
   } as CSSProperties;
+
+  // Master-script readout: real placeholder position capped to the 6:00 frame.
+  const masterClock = Math.min(currentTime, MASTER_RUNTIME_SECONDS);
 
   function togglePlay() {
     const audio = audioRef.current;
@@ -88,14 +162,12 @@ export default function AudioDramaPlayer() {
     void audio.play().catch(() => setHasError(true));
   }
 
-  // The <audio> element is server-rendered with preload="auto", so the native
-  // load can fail BEFORE React hydrates and attaches onError. A failure in that
-  // pre-hydration window would silently leave the player stuck looking ready.
-  // Attach a ref-based 'error' listener on mount and sample the element's error
-  // state right after hydration so an early load failure still surfaces the
-  // alert + Try again. 'error' is the deterministic signal (never false-
-  // positives a healthy load); transient 'stalled' buffering is deliberately
-  // NOT treated as failure so working playback is never ripped away.
+  // Pre-hydration error-listener fix: the server-rendered <audio> can fail to
+  // load before React hydrates. Attach a ref-based 'error' listener on mount
+  // and sample audio.error shortly after hydration so an early load failure
+  // still surfaces the alert + Try again. Transient 'stalled' buffering is
+  // deliberately NOT treated as failure so working playback is never ripped
+  // away. 'error' is the deterministic signal (never false-positives).
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -104,10 +176,6 @@ export default function AudioDramaPlayer() {
       if (alive) setHasError(true);
     };
     audio.addEventListener('error', fail);
-    // Sample readiness shortly after hydration: if the native error already
-    // fired (audio.error set — src aborted/refused during preload), transition
-    // to the error state. A healthy in-flight load has audio.error === null, so
-    // this never flips a working stream.
     const sampleId = window.setTimeout(() => {
       if (alive && audio.error) setHasError(true);
     }, 250);
@@ -140,7 +208,9 @@ export default function AudioDramaPlayer() {
   }
 
   return (
-    <div className="flex h-full flex-col justify-center rounded-[1.75rem] border border-[#ecc87e]/25 bg-[#3c342b] p-5 shadow-[0_2px_6px_rgba(0,0,0,0.2),0_16px_40px_-12px_rgba(0,0,0,0.45)] sm:p-7">
+    <div
+      className={`flex h-full flex-col justify-center rounded-[1.75rem] border p-5 sm:p-7 ${t.shell}`}
+    >
       {/* Hidden native audio element — all state flows through React events. */}
       <audio
         ref={audioRef}
@@ -171,7 +241,9 @@ export default function AudioDramaPlayer() {
 
       {/* Header row: honest label + decorative equalizer (CSS only). */}
       <div className="flex items-center justify-between gap-3">
-        <p className="text-[11px] font-bold tracking-[0.22em] text-[#ecc87e] uppercase">
+        <p
+          className={`text-[11px] font-bold tracking-[0.22em] uppercase ${t.headerLabel}`}
+        >
           {isPlaying ? 'Now playing' : 'Loaded · ready to play'} — pre-production sample
         </p>
         <div
@@ -186,11 +258,11 @@ export default function AudioDramaPlayer() {
 
       {hasError ? (
         /* Graceful failure — never a broken control. */
-        <div role="alert" className="mt-5 rounded-2xl border border-[#b4552d]/40 bg-[#2e2a26] p-5">
-          <p className="font-display text-lg font-bold text-[#fdf6e3]">
+        <div role="alert" className={`mt-5 rounded-2xl border p-5 ${t.errorPanel}`}>
+          <p className={`font-display text-lg font-bold ${t.errorTitle}`}>
             The sample wouldn&apos;t load.
           </p>
-          <p className="mt-1.5 text-sm leading-relaxed text-[#fdf6e3]/70">
+          <p className={`mt-1.5 text-sm leading-relaxed ${t.errorBody}`}>
             It looks like the audio stream can&apos;t be reached right now — check your
             connection and try again. The finished chapter will live here first.
           </p>
@@ -220,22 +292,26 @@ export default function AudioDramaPlayer() {
               {isPlaying ? <PauseIcon /> : <PlayIcon />}
             </button>
             <div className="min-w-0 flex-1">
-              <p className="font-display truncate text-lg font-bold text-[#fdf6e3]">
+              <p className={`font-display truncate text-lg font-bold ${t.title}`}>
                 LWS/001 — &ldquo;In the Beginning&rdquo;
               </p>
-              <p className="mt-0.5 truncate text-xs text-[#fdf6e3]/60">
+              <p className={`mt-0.5 truncate text-xs ${t.subtitle}`}>
                 Audio-drama · chapter sample · orchestral narration placeholder
               </p>
             </div>
-            <span className="hidden shrink-0 rounded-full border border-[#ecc87e]/40 bg-[#ecc87e]/10 px-3 py-1 text-[10px] font-bold tracking-[0.18em] text-[#ecc87e] uppercase sm:inline-block">
+            <span
+              className={`hidden shrink-0 rounded-full border px-3 py-1 text-[10px] font-bold tracking-[0.18em] uppercase sm:inline-block ${t.pill}`}
+            >
               Pre-production
             </span>
           </div>
 
-          {/* Scrubber row: elapsed / seekable timeline / total */}
-          <div className="flex items-center gap-3">
-            <span className="ap-time w-11 shrink-0 text-right font-mono text-xs text-[#fdf6e3]/75 tabular-nums">
-              {formatTime(currentTime)}
+          {/* Scrubber row: real placeholder elapsed / gold timeline */}
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span
+              className={`ap-time w-24 shrink-0 font-mono text-xs tabular-nums ${t.time}`}
+            >
+              {formatTime(currentTime)} / {duration > 0 ? formatTime(duration) : '–:––'}
             </span>
             <input
               type="range"
@@ -253,18 +329,24 @@ export default function AudioDramaPlayer() {
                 duration > 0 ? formatTime(duration) : 'unknown length'
               }`}
               style={scrubFill}
-              className="scrubber min-w-0 flex-1"
+              className={`${t.scrubber} min-w-0 flex-1`}
             />
-            <span className="ap-time w-11 shrink-0 font-mono text-xs text-[#fdf6e3]/45 tabular-nums">
-              {duration > 0 ? formatTime(duration) : '–:––'}
+            {/* Master script runtime — the owner's 6:00 label for LWS/001 */}
+            <span className="ml-auto shrink-0 text-right">
+              <span className={`block text-[10px] font-bold tracking-[0.16em] uppercase ${t.masterValue}`}>
+                Master script runtime
+              </span>
+              <span className={`mt-0.5 block font-mono text-xs tabular-nums ${t.masterValue}`}>
+                {formatTime(masterClock)} / {MASTER_RUNTIME_LABEL}
+              </span>
             </span>
           </div>
 
-          {/* Status line — states the honest truth about the placeholder. */}
-          <p className="text-xs leading-relaxed text-[#fdf6e3]/55">
+          {/* Honest status line — states the truth about the placeholder. */}
+          <p className={`text-xs leading-relaxed ${t.status}`}>
             {isBuffering && isPlaying
               ? 'Buffering the stream…'
-              : 'Pre-production audio sample — a placeholder track recorded so you can hear the storytelling style today. The finished chapter lands here first.'}
+              : 'Pre-production placeholder sample — the full 6:00 LWS/001 chapter swaps in at release.'}
           </p>
         </div>
       )}
