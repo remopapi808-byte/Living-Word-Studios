@@ -469,3 +469,40 @@ body {
     line-height: 1.5;
   }
 }
+
+/* ============================================================
+ * Audio Theater (2026-09-14). Additive: a parchment-friendly
+ * scrubber variant + the gold-scrollbar Master Script reader.
+ * Order matters: .scrubber--light is defined AFTER .scrubber so
+ * the same-specificity background override wins when both are
+ * applied (className="scrubber scrubber--light").
+ * ============================================================ */
+
+/* --- Light-theme scrubber: gold fill, charcoal-muted empty track --- */
+.scrubber--light {
+  background: linear-gradient(to right, #d9a441 var(--fill), rgba(60, 52, 43, 0.18) var(--fill));
+}
+.scrubber--light::-moz-range-track {
+  background: transparent;
+}
+
+/* --- Master Production Script reader: scrollable gold-scrollbar panel --- */
+.script-reader {
+  scrollbar-width: thin;
+  scrollbar-color: #d9a441 rgba(60, 52, 43, 0.08);
+}
+.script-reader::-webkit-scrollbar {
+  width: 10px;
+}
+.script-reader::-webkit-scrollbar-track {
+  background: rgba(60, 52, 43, 0.06);
+  border-radius: 9999px;
+}
+.script-reader::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ecc87e, #d9a441);
+  border-radius: 9999px;
+  border: 2px solid #fdf6e3;
+}
+.script-reader::-webkit-scrollbar-thumb:hover {
+  background: #b07a1e;
+}

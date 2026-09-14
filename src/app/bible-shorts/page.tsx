@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import AudioDramaPlayer from '@/components/audio-drama-player';
+import AudioTheater from '@/components/audio-theater';
 import VimeoTrailer from '@/components/vimeo-trailer';
 import CommunityClose from '@/components/community-close';
 import SiteFooter from '@/components/site-footer';
@@ -141,66 +141,13 @@ export default function BibleShortsPage() {
         </section>
 
         {/* ------------------------------------------------------------
-            Featured audio-drama — the charcoal accent panel holding the
-            streaming player. Dark #2e2a26 as a panel, never the base.
+            The Audio Theater — the flagship section: premium audio deck,
+            the scrollable Master Production Script reader (owner's verbatim
+            text), and the Neon-wired waitlist directly beneath the reader.
+            id="audio-theater" keeps the in-page anchor contract; the deck
+            wrapper carries the legacy id="player" so the hero CTA still lands.
             ------------------------------------------------------------ */}
-        <section id="player" className="scroll-mt-24">
-          <div className="mx-auto max-w-6xl px-4 pt-6 pb-24 sm:px-6 sm:pb-32">
-            <div className="ap-media-panel relative overflow-hidden rounded-[2.5rem] bg-[#2e2a26] p-6 shadow-[0_2px_6px_rgba(176,122,30,0.10),0_24px_60px_-20px_rgba(46,42,38,0.55)] sm:p-10">
-              {/* warm gold wash over the charcoal — the only dark surface on the page */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_80%_-10%,rgba(217,164,65,0.22),transparent_60%),radial-gradient(ellipse_50%_45%_at_5%_110%,rgba(217,164,65,0.12),transparent_65%)]"
-              />
-              <div className="relative grid gap-10 lg:grid-cols-12 lg:gap-12">
-                <div className="lg:col-span-5">
-                  <p className="inline-flex items-center gap-2 rounded-full border border-[#d9a441]/60 bg-[#d9a441]/10 px-4 py-1.5 text-[11px] font-bold tracking-[0.22em] text-[#ecc87e] uppercase">
-                    <span
-                      aria-hidden="true"
-                      className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[#d9a441]"
-                    />
-                    Now featured · Audio-drama
-                  </p>
-                  <p className="mt-6 font-mono text-sm tracking-[0.3em] text-[#ecc87e]">LWS/001</p>
-                  <h2 className="ap-drama-title font-display mt-2 text-3xl font-bold text-[#fffdf7] sm:text-4xl">
-                    &ldquo;In the Beginning&rdquo;
-                  </h2>
-                  <p className="mt-4 max-w-md text-base leading-relaxed text-[#fdf6e3]/75">
-                    The first Bible Short opens the story where it starts — light,
-                    creation, and a God who speaks hope into the dark. This listening
-                    sample gives you the feel of the finished chapter: the pacing, the
-                    voices, the quiet before the first words.
-                  </p>
-                  <dl className="mt-6 grid max-w-md grid-cols-3 gap-3">
-                    {[
-                      ['Series', 'Bible Shorts'],
-                      ['Format', 'Audio-drama'],
-                      ['Status', 'Pre-production'],
-                    ].map(([term, detail]) => (
-                      <div
-                        key={term}
-                        className="rounded-2xl border border-[#fdf6e3]/15 bg-[#fdf6e3]/5 p-3"
-                      >
-                        <dt className="text-[10px] font-bold tracking-[0.18em] text-[#ecc87e]/80 uppercase">
-                          {term}
-                        </dt>
-                        <dd className="mt-1 text-sm font-semibold text-[#fdf6e3]">{detail}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                  <p className="mt-5 max-w-md text-xs leading-relaxed text-[#fdf6e3]/55">
-                    Honest note: the first chapter is in production. The track below is a
-                    pre-production audio sample — a placeholder recording so you can hear
-                    the storytelling style right now.
-                  </p>
-                </div>
-                <div className="lg:col-span-7">
-                  <AudioDramaPlayer />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <AudioTheater />
 
         {/* ------------------------------------------------------------
             Why audio-drama — light series description section.
